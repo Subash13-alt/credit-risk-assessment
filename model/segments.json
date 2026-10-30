@@ -1,0 +1,5683 @@
+{
+  "k": 5,
+  "n_applicants": 4000,
+  "silhouette_score": 0.0768,
+  "explained_variance_ratio_2d": [
+    0.0815,
+    0.0729
+  ],
+  "clusters": [
+    {
+      "cluster_id": 0,
+      "persona": "Unemployed Applicants, Strong Credit History",
+      "size": 577,
+      "avg_annual_income": 57091.0,
+      "avg_loan_amount": 18864.0,
+      "avg_cibil_score": 729.0,
+      "avg_debt_to_income_ratio": 35.1,
+      "avg_age": 42.8,
+      "dominant_employment_status": "Unemployed",
+      "collateral_rate_pct": 38.8,
+      "dominant_risk": "High Risk",
+      "risk_purity": 0.733
+    },
+    {
+      "cluster_id": 1,
+      "persona": "Secured Applicants (Collateral-Backed)",
+      "size": 923,
+      "avg_annual_income": 55594.0,
+      "avg_loan_amount": 18042.0,
+      "avg_cibil_score": 728.0,
+      "avg_debt_to_income_ratio": 35.0,
+      "avg_age": 42.7,
+      "dominant_employment_status": "Salaried",
+      "collateral_rate_pct": 100.0,
+      "dominant_risk": "Low Risk",
+      "risk_purity": 0.873
+    },
+    {
+      "cluster_id": 2,
+      "persona": "High-Risk / Thin-File Applicants",
+      "size": 585,
+      "avg_annual_income": 55518.0,
+      "avg_loan_amount": 19262.0,
+      "avg_cibil_score": 483.0,
+      "avg_debt_to_income_ratio": 35.2,
+      "avg_age": 42.0,
+      "dominant_employment_status": "Salaried",
+      "collateral_rate_pct": 36.4,
+      "dominant_risk": "High Risk",
+      "risk_purity": 0.641
+    },
+    {
+      "cluster_id": 3,
+      "persona": "Moderate-Risk Mixed Profile",
+      "size": 500,
+      "avg_annual_income": 56446.0,
+      "avg_loan_amount": 19388.0,
+      "avg_cibil_score": 683.0,
+      "avg_debt_to_income_ratio": 35.6,
+      "avg_age": 43.2,
+      "dominant_employment_status": "Salaried",
+      "collateral_rate_pct": 41.8,
+      "dominant_risk": "Low Risk",
+      "risk_purity": 0.518
+    },
+    {
+      "cluster_id": 4,
+      "persona": "Unsecured Applicants (No Collateral)",
+      "size": 1415,
+      "avg_annual_income": 55694.0,
+      "avg_loan_amount": 18634.0,
+      "avg_cibil_score": 724.0,
+      "avg_debt_to_income_ratio": 35.2,
+      "avg_age": 42.6,
+      "dominant_employment_status": "Salaried",
+      "collateral_rate_pct": 0.0,
+      "dominant_risk": "Low Risk",
+      "risk_purity": 0.743
+    }
+  ],
+  "scatter": [
+    {
+      "x": -0.1249,
+      "y": 2.2234,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02041"
+    },
+    {
+      "x": 0.3357,
+      "y": 1.5149,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02018"
+    },
+    {
+      "x": -0.0004,
+      "y": 0.3246,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00413"
+    },
+    {
+      "x": 0.1656,
+      "y": 0.4363,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01854"
+    },
+    {
+      "x": -1.6409,
+      "y": -1.767,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_00066"
+    },
+    {
+      "x": -1.8641,
+      "y": -1.5293,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02405"
+    },
+    {
+      "x": 0.3927,
+      "y": 0.3678,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00418"
+    },
+    {
+      "x": 0.7667,
+      "y": 0.7235,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01274"
+    },
+    {
+      "x": 0.6954,
+      "y": -1.061,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00661"
+    },
+    {
+      "x": 0.7467,
+      "y": -0.226,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03553"
+    },
+    {
+      "x": -0.1984,
+      "y": -0.6304,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00910"
+    },
+    {
+      "x": -0.0179,
+      "y": -0.3661,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03702"
+    },
+    {
+      "x": 0.8364,
+      "y": -1.4494,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00620"
+    },
+    {
+      "x": -3.0969,
+      "y": -0.4436,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02351"
+    },
+    {
+      "x": -2.1242,
+      "y": -0.091,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02820"
+    },
+    {
+      "x": 0.582,
+      "y": -1.3119,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03849"
+    },
+    {
+      "x": -0.0118,
+      "y": -0.8988,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00091"
+    },
+    {
+      "x": 1.6334,
+      "y": -1.2377,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01368"
+    },
+    {
+      "x": 0.5991,
+      "y": 0.5381,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00345"
+    },
+    {
+      "x": -2.7727,
+      "y": -0.1185,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00470"
+    },
+    {
+      "x": -1.003,
+      "y": -0.304,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00143"
+    },
+    {
+      "x": -2.7681,
+      "y": 1.476,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00790"
+    },
+    {
+      "x": 0.8686,
+      "y": -0.1188,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01203"
+    },
+    {
+      "x": 0.5331,
+      "y": 1.2586,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02114"
+    },
+    {
+      "x": 0.8032,
+      "y": 0.461,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01477"
+    },
+    {
+      "x": 0.2185,
+      "y": -1.6878,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_01159"
+    },
+    {
+      "x": 0.2803,
+      "y": 0.2406,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00537"
+    },
+    {
+      "x": 0.4054,
+      "y": -1.1205,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03198"
+    },
+    {
+      "x": -2.1832,
+      "y": -1.172,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02311"
+    },
+    {
+      "x": 1.0309,
+      "y": -0.0313,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01703"
+    },
+    {
+      "x": 0.253,
+      "y": 0.3293,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01064"
+    },
+    {
+      "x": 0.0071,
+      "y": 0.146,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01448"
+    },
+    {
+      "x": -1.5098,
+      "y": -0.2612,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03517"
+    },
+    {
+      "x": 0.6975,
+      "y": -0.8843,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02204"
+    },
+    {
+      "x": 0.3451,
+      "y": -1.1066,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01694"
+    },
+    {
+      "x": -0.952,
+      "y": -0.6883,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_00483"
+    },
+    {
+      "x": 0.3506,
+      "y": 1.1583,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02502"
+    },
+    {
+      "x": 0.6662,
+      "y": -0.2233,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00655"
+    },
+    {
+      "x": 0.2219,
+      "y": 0.8243,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03564"
+    },
+    {
+      "x": 0.0334,
+      "y": -0.0065,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00226"
+    },
+    {
+      "x": 0.5529,
+      "y": -1.2459,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01377"
+    },
+    {
+      "x": 0.135,
+      "y": 2.0062,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01014"
+    },
+    {
+      "x": -2.119,
+      "y": 0.0068,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00486"
+    },
+    {
+      "x": 0.8508,
+      "y": -1.8435,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02047"
+    },
+    {
+      "x": 0.4408,
+      "y": 0.3443,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03304"
+    },
+    {
+      "x": -1.7761,
+      "y": 0.8306,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01046"
+    },
+    {
+      "x": 0.0013,
+      "y": 0.184,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03072"
+    },
+    {
+      "x": -2.5323,
+      "y": -0.9079,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00607"
+    },
+    {
+      "x": -1.4382,
+      "y": 0.0033,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00200"
+    },
+    {
+      "x": 1.1314,
+      "y": 0.4288,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00477"
+    },
+    {
+      "x": 0.4402,
+      "y": -0.0636,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00250"
+    },
+    {
+      "x": 0.4609,
+      "y": -1.236,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03769"
+    },
+    {
+      "x": 0.9115,
+      "y": -0.9934,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01311"
+    },
+    {
+      "x": 0.0605,
+      "y": 1.5741,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_02631"
+    },
+    {
+      "x": -3.0041,
+      "y": -0.2508,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03123"
+    },
+    {
+      "x": 0.6402,
+      "y": -0.4993,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02959"
+    },
+    {
+      "x": -2.447,
+      "y": 2.097,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_00327"
+    },
+    {
+      "x": 0.1869,
+      "y": -1.3756,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01458"
+    },
+    {
+      "x": 0.9846,
+      "y": -0.8216,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03789"
+    },
+    {
+      "x": -0.1841,
+      "y": 0.7413,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01821"
+    },
+    {
+      "x": 0.365,
+      "y": 1.2279,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01845"
+    },
+    {
+      "x": 0.709,
+      "y": 0.3209,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02064"
+    },
+    {
+      "x": 0.6116,
+      "y": 0.4149,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03838"
+    },
+    {
+      "x": -1.8946,
+      "y": -1.9773,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01588"
+    },
+    {
+      "x": 0.748,
+      "y": 0.7257,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00380"
+    },
+    {
+      "x": 0.0654,
+      "y": 2.5612,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01706"
+    },
+    {
+      "x": -0.3689,
+      "y": 0.4092,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03422"
+    },
+    {
+      "x": 1.4864,
+      "y": 0.2092,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01164"
+    },
+    {
+      "x": -0.2099,
+      "y": 1.3897,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_01525"
+    },
+    {
+      "x": 0.5778,
+      "y": 0.2281,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03036"
+    },
+    {
+      "x": 0.0724,
+      "y": 0.2637,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00780"
+    },
+    {
+      "x": -0.0697,
+      "y": 2.6607,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01060"
+    },
+    {
+      "x": 1.4127,
+      "y": -0.9454,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03359"
+    },
+    {
+      "x": 0.4565,
+      "y": 0.0781,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_03497"
+    },
+    {
+      "x": 1.1521,
+      "y": 0.5683,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02441"
+    },
+    {
+      "x": 0.2184,
+      "y": 1.2218,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00650"
+    },
+    {
+      "x": -2.3494,
+      "y": 1.1511,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01495"
+    },
+    {
+      "x": -2.7129,
+      "y": -0.9378,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03870"
+    },
+    {
+      "x": -0.0763,
+      "y": -0.4476,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01459"
+    },
+    {
+      "x": 1.5425,
+      "y": 0.1085,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01571"
+    },
+    {
+      "x": 1.2038,
+      "y": -0.2431,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03360"
+    },
+    {
+      "x": 1.0906,
+      "y": -0.2765,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00582"
+    },
+    {
+      "x": -1.6067,
+      "y": -1.2386,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_00507"
+    },
+    {
+      "x": 0.7947,
+      "y": 1.3783,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00702"
+    },
+    {
+      "x": 0.0959,
+      "y": 1.2112,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02650"
+    },
+    {
+      "x": -2.1835,
+      "y": 0.1915,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03659"
+    },
+    {
+      "x": -2.0588,
+      "y": -0.8596,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02157"
+    },
+    {
+      "x": 0.7482,
+      "y": 0.1974,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_01896"
+    },
+    {
+      "x": -0.1768,
+      "y": 0.326,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02414"
+    },
+    {
+      "x": 1.1169,
+      "y": -0.1934,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01861"
+    },
+    {
+      "x": 0.8247,
+      "y": 1.2319,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00295"
+    },
+    {
+      "x": 0.3511,
+      "y": 0.6296,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_02386"
+    },
+    {
+      "x": -2.6228,
+      "y": 0.0047,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03451"
+    },
+    {
+      "x": 1.2462,
+      "y": 1.3738,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01865"
+    },
+    {
+      "x": -0.1938,
+      "y": 0.1148,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_00527"
+    },
+    {
+      "x": 1.3632,
+      "y": -1.1634,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00392"
+    },
+    {
+      "x": 0.4638,
+      "y": -1.0961,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_02657"
+    },
+    {
+      "x": 0.5281,
+      "y": 0.6652,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_02824"
+    },
+    {
+      "x": 0.082,
+      "y": -1.671,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03322"
+    },
+    {
+      "x": 0.5458,
+      "y": -1.3131,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01184"
+    },
+    {
+      "x": 0.5396,
+      "y": 1.2927,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03447"
+    },
+    {
+      "x": 0.5309,
+      "y": 0.323,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01291"
+    },
+    {
+      "x": 1.0971,
+      "y": 1.6699,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02666"
+    },
+    {
+      "x": 0.2587,
+      "y": -1.149,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00065"
+    },
+    {
+      "x": -0.3506,
+      "y": 0.5964,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00304"
+    },
+    {
+      "x": -0.6061,
+      "y": 1.0672,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02034"
+    },
+    {
+      "x": -2.1077,
+      "y": 0.2504,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02514"
+    },
+    {
+      "x": 1.0288,
+      "y": -0.95,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00630"
+    },
+    {
+      "x": 1.0519,
+      "y": 0.0617,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_02740"
+    },
+    {
+      "x": 0.7669,
+      "y": -0.407,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00271"
+    },
+    {
+      "x": 1.2578,
+      "y": -1.8828,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01781"
+    },
+    {
+      "x": 1.0176,
+      "y": -1.0768,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03684"
+    },
+    {
+      "x": 0.7456,
+      "y": 1.1125,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00815"
+    },
+    {
+      "x": -1.9783,
+      "y": 2.4545,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02422"
+    },
+    {
+      "x": 0.0928,
+      "y": 0.2034,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00462"
+    },
+    {
+      "x": -0.5323,
+      "y": 0.9607,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01079"
+    },
+    {
+      "x": 0.2541,
+      "y": -1.419,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02447"
+    },
+    {
+      "x": 1.1154,
+      "y": 1.3176,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03396"
+    },
+    {
+      "x": -0.236,
+      "y": -0.7809,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00891"
+    },
+    {
+      "x": 0.1739,
+      "y": 1.066,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02770"
+    },
+    {
+      "x": 0.4773,
+      "y": 0.7733,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01438"
+    },
+    {
+      "x": 0.3296,
+      "y": -0.2844,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02410"
+    },
+    {
+      "x": 0.7558,
+      "y": 1.3216,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02687"
+    },
+    {
+      "x": -0.4591,
+      "y": -0.036,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02537"
+    },
+    {
+      "x": 0.2295,
+      "y": 0.5886,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01824"
+    },
+    {
+      "x": -2.0671,
+      "y": -0.7446,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01566"
+    },
+    {
+      "x": -1.5918,
+      "y": -0.5913,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01299"
+    },
+    {
+      "x": 0.1284,
+      "y": -0.152,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03375"
+    },
+    {
+      "x": -2.9678,
+      "y": 0.2926,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03374"
+    },
+    {
+      "x": -0.1394,
+      "y": 1.7063,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03882"
+    },
+    {
+      "x": 0.3073,
+      "y": -1.515,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01871"
+    },
+    {
+      "x": 0.1622,
+      "y": 0.6994,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03828"
+    },
+    {
+      "x": 0.2541,
+      "y": -0.0418,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_02234"
+    },
+    {
+      "x": -2.4512,
+      "y": -2.0687,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_01538"
+    },
+    {
+      "x": -2.2126,
+      "y": -1.2642,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01123"
+    },
+    {
+      "x": 0.9487,
+      "y": 0.0685,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01886"
+    },
+    {
+      "x": 0.349,
+      "y": 0.8838,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_02848"
+    },
+    {
+      "x": 1.2071,
+      "y": -1.0214,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02248"
+    },
+    {
+      "x": -1.6795,
+      "y": -1.3323,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_03651"
+    },
+    {
+      "x": 0.2958,
+      "y": 0.6545,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01295"
+    },
+    {
+      "x": -2.0413,
+      "y": 0.071,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01455"
+    },
+    {
+      "x": 0.5353,
+      "y": -1.1928,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_00892"
+    },
+    {
+      "x": -2.325,
+      "y": -0.3915,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03013"
+    },
+    {
+      "x": 0.344,
+      "y": -0.9097,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01237"
+    },
+    {
+      "x": 0.4919,
+      "y": -0.2758,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03919"
+    },
+    {
+      "x": 1.0248,
+      "y": 1.1309,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01242"
+    },
+    {
+      "x": -0.619,
+      "y": 0.6292,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02779"
+    },
+    {
+      "x": 1.2372,
+      "y": 0.6786,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02238"
+    },
+    {
+      "x": 0.3739,
+      "y": 1.7016,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00402"
+    },
+    {
+      "x": -2.0694,
+      "y": -0.4846,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01560"
+    },
+    {
+      "x": 1.2483,
+      "y": -0.8435,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03625"
+    },
+    {
+      "x": -2.3212,
+      "y": -0.2849,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01841"
+    },
+    {
+      "x": 0.6272,
+      "y": -1.2613,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00208"
+    },
+    {
+      "x": -0.0425,
+      "y": -1.2213,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01512"
+    },
+    {
+      "x": 0.0557,
+      "y": 1.9359,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01320"
+    },
+    {
+      "x": 0.0935,
+      "y": 2.2868,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_03445"
+    },
+    {
+      "x": -3.3117,
+      "y": 0.6864,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02125"
+    },
+    {
+      "x": 0.9471,
+      "y": -0.8935,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_01411"
+    },
+    {
+      "x": 0.6393,
+      "y": -1.6394,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02776"
+    },
+    {
+      "x": 0.482,
+      "y": -0.5579,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03109"
+    },
+    {
+      "x": -1.9416,
+      "y": -1.7022,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02604"
+    },
+    {
+      "x": 0.1054,
+      "y": -0.6814,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02216"
+    },
+    {
+      "x": 0.6781,
+      "y": -0.1127,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03412"
+    },
+    {
+      "x": 0.6507,
+      "y": -0.4926,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00534"
+    },
+    {
+      "x": 0.3445,
+      "y": -1.633,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01062"
+    },
+    {
+      "x": -0.1262,
+      "y": -0.1189,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02853"
+    },
+    {
+      "x": -0.4058,
+      "y": 0.4178,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01958"
+    },
+    {
+      "x": 0.4676,
+      "y": -0.9746,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00542"
+    },
+    {
+      "x": 1.1887,
+      "y": 0.9404,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_03529"
+    },
+    {
+      "x": 0.3399,
+      "y": 0.7885,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03908"
+    },
+    {
+      "x": 0.6877,
+      "y": -1.1968,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02106"
+    },
+    {
+      "x": 0.3709,
+      "y": -1.0906,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03423"
+    },
+    {
+      "x": 0.5839,
+      "y": -1.0839,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01885"
+    },
+    {
+      "x": -2.6042,
+      "y": 1.8388,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_00080"
+    },
+    {
+      "x": 0.5048,
+      "y": 1.5851,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01233"
+    },
+    {
+      "x": 1.0673,
+      "y": 2.0621,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00162"
+    },
+    {
+      "x": 0.6179,
+      "y": 0.1188,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00388"
+    },
+    {
+      "x": 1.0567,
+      "y": -1.0936,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00783"
+    },
+    {
+      "x": -3.4538,
+      "y": 0.2962,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03688"
+    },
+    {
+      "x": -0.0805,
+      "y": -0.6266,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00460"
+    },
+    {
+      "x": -2.7102,
+      "y": 1.644,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00716"
+    },
+    {
+      "x": 0.5781,
+      "y": 0.5166,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01547"
+    },
+    {
+      "x": -0.0356,
+      "y": 1.1527,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00243"
+    },
+    {
+      "x": -0.0922,
+      "y": -0.061,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03115"
+    },
+    {
+      "x": 0.7107,
+      "y": 0.7578,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02856"
+    },
+    {
+      "x": -2.2298,
+      "y": 0.4694,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01561"
+    },
+    {
+      "x": 0.1101,
+      "y": -0.0039,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_02752"
+    },
+    {
+      "x": 0.4538,
+      "y": 0.5409,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00988"
+    },
+    {
+      "x": 1.558,
+      "y": 0.4093,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02747"
+    },
+    {
+      "x": -1.9943,
+      "y": -1.6457,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_02045"
+    },
+    {
+      "x": 0.5362,
+      "y": 1.7626,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01621"
+    },
+    {
+      "x": 0.684,
+      "y": 2.0154,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00286"
+    },
+    {
+      "x": 0.2199,
+      "y": 1.9616,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01934"
+    },
+    {
+      "x": 0.5136,
+      "y": 1.2173,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_00353"
+    },
+    {
+      "x": 0.5724,
+      "y": -0.6031,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01155"
+    },
+    {
+      "x": 1.2303,
+      "y": 2.0796,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00050"
+    },
+    {
+      "x": 0.7022,
+      "y": 0.9117,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_03891"
+    },
+    {
+      "x": -2.3991,
+      "y": -0.1408,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03521"
+    },
+    {
+      "x": 0.5549,
+      "y": 1.7211,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02203"
+    },
+    {
+      "x": 0.4029,
+      "y": 0.8083,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_00051"
+    },
+    {
+      "x": 0.4876,
+      "y": 0.3989,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03267"
+    },
+    {
+      "x": 1.1439,
+      "y": -1.1681,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03731"
+    },
+    {
+      "x": 0.3024,
+      "y": -0.0007,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01194"
+    },
+    {
+      "x": 0.8368,
+      "y": 1.6772,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02379"
+    },
+    {
+      "x": -2.9243,
+      "y": 1.5543,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01145"
+    },
+    {
+      "x": -0.6163,
+      "y": 1.7519,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00797"
+    },
+    {
+      "x": 0.8848,
+      "y": 1.7732,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00985"
+    },
+    {
+      "x": 0.7249,
+      "y": -1.7341,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01558"
+    },
+    {
+      "x": -2.2138,
+      "y": 1.3748,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03414"
+    },
+    {
+      "x": 0.5645,
+      "y": -0.4066,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01342"
+    },
+    {
+      "x": 1.4727,
+      "y": -0.9045,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03425"
+    },
+    {
+      "x": 1.0441,
+      "y": -0.5955,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01404"
+    },
+    {
+      "x": -0.0688,
+      "y": 0.5744,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03332"
+    },
+    {
+      "x": -0.3002,
+      "y": 0.8584,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_03871"
+    },
+    {
+      "x": 0.8056,
+      "y": -0.1499,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_02471"
+    },
+    {
+      "x": 0.3479,
+      "y": 1.5663,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03681"
+    },
+    {
+      "x": 0.2318,
+      "y": 2.0062,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00864"
+    },
+    {
+      "x": 0.6057,
+      "y": 1.9533,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_01384"
+    },
+    {
+      "x": 0.5278,
+      "y": -0.6852,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01197"
+    },
+    {
+      "x": 0.5248,
+      "y": 2.2824,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03438"
+    },
+    {
+      "x": -0.0042,
+      "y": -0.6562,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03808"
+    },
+    {
+      "x": -0.29,
+      "y": -1.1598,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03583"
+    },
+    {
+      "x": 0.871,
+      "y": -1.3148,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02338"
+    },
+    {
+      "x": 0.7139,
+      "y": -0.9393,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03278"
+    },
+    {
+      "x": 0.6436,
+      "y": 1.8049,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02972"
+    },
+    {
+      "x": -2.2894,
+      "y": -1.8984,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01431"
+    },
+    {
+      "x": 0.5618,
+      "y": -1.3524,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00951"
+    },
+    {
+      "x": -0.0036,
+      "y": -0.9874,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02659"
+    },
+    {
+      "x": 0.9679,
+      "y": -0.1898,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03966"
+    },
+    {
+      "x": 0.9706,
+      "y": -0.9138,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02155"
+    },
+    {
+      "x": 0.7101,
+      "y": -1.8898,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00117"
+    },
+    {
+      "x": -0.5255,
+      "y": 1.8354,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00130"
+    },
+    {
+      "x": -0.1686,
+      "y": -0.2874,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_02602"
+    },
+    {
+      "x": 0.3517,
+      "y": -0.1087,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01823"
+    },
+    {
+      "x": 0.5112,
+      "y": -0.9335,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02196"
+    },
+    {
+      "x": 1.0639,
+      "y": -0.7775,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01884"
+    },
+    {
+      "x": 0.7278,
+      "y": 0.0714,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03113"
+    },
+    {
+      "x": -1.8981,
+      "y": 0.1459,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00551"
+    },
+    {
+      "x": -0.2538,
+      "y": -1.5819,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01931"
+    },
+    {
+      "x": 0.7048,
+      "y": 0.5945,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01451"
+    },
+    {
+      "x": 0.8512,
+      "y": 0.2283,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_01314"
+    },
+    {
+      "x": 0.6579,
+      "y": -0.8388,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01255"
+    },
+    {
+      "x": 0.523,
+      "y": 0.0001,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00669"
+    },
+    {
+      "x": 0.1975,
+      "y": 0.9909,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00489"
+    },
+    {
+      "x": 0.2689,
+      "y": 1.4342,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02051"
+    },
+    {
+      "x": 0.018,
+      "y": 0.2651,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03644"
+    },
+    {
+      "x": 0.9375,
+      "y": 0.4745,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01902"
+    },
+    {
+      "x": 1.0323,
+      "y": 1.8174,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02175"
+    },
+    {
+      "x": 0.4239,
+      "y": -0.0525,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02251"
+    },
+    {
+      "x": 0.5697,
+      "y": -0.4399,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03556"
+    },
+    {
+      "x": 0.8342,
+      "y": -0.2864,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00196"
+    },
+    {
+      "x": 0.5837,
+      "y": 1.3097,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00556"
+    },
+    {
+      "x": 0.5222,
+      "y": -0.6215,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01518"
+    },
+    {
+      "x": 0.7921,
+      "y": -1.39,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00421"
+    },
+    {
+      "x": 0.3135,
+      "y": 0.7255,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02283"
+    },
+    {
+      "x": 0.2961,
+      "y": -0.3767,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02901"
+    },
+    {
+      "x": -1.085,
+      "y": -0.2607,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01919"
+    },
+    {
+      "x": 0.4259,
+      "y": 1.7326,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01456"
+    },
+    {
+      "x": 0.4797,
+      "y": 1.4092,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00499"
+    },
+    {
+      "x": 0.4881,
+      "y": -0.0739,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03101"
+    },
+    {
+      "x": -2.7136,
+      "y": 0.1129,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03316"
+    },
+    {
+      "x": -0.1805,
+      "y": 1.4875,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02382"
+    },
+    {
+      "x": 0.2935,
+      "y": 1.8717,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00432"
+    },
+    {
+      "x": -2.5621,
+      "y": -0.4131,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02653"
+    },
+    {
+      "x": -1.1659,
+      "y": -1.3903,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03430"
+    },
+    {
+      "x": -1.3748,
+      "y": -1.9457,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00718"
+    },
+    {
+      "x": -2.3939,
+      "y": 0.3639,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00930"
+    },
+    {
+      "x": 0.774,
+      "y": 1.5832,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03283"
+    },
+    {
+      "x": 0.1376,
+      "y": -0.1299,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_02339"
+    },
+    {
+      "x": 1.4287,
+      "y": -1.315,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00132"
+    },
+    {
+      "x": -3.4201,
+      "y": 0.0961,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_02310"
+    },
+    {
+      "x": 1.0442,
+      "y": -0.1593,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02357"
+    },
+    {
+      "x": -1.1431,
+      "y": -0.1643,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02988"
+    },
+    {
+      "x": 0.5578,
+      "y": 0.9248,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02737"
+    },
+    {
+      "x": -1.7718,
+      "y": -0.2599,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00633"
+    },
+    {
+      "x": -3.5959,
+      "y": 0.4894,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01576"
+    },
+    {
+      "x": 0.3985,
+      "y": -1.5577,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03603"
+    },
+    {
+      "x": 1.2221,
+      "y": 0.189,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01653"
+    },
+    {
+      "x": 0.6777,
+      "y": -0.9501,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01894"
+    },
+    {
+      "x": 0.5305,
+      "y": 1.9364,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00385"
+    },
+    {
+      "x": 0.452,
+      "y": -1.8795,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00707"
+    },
+    {
+      "x": 1.1325,
+      "y": 0.687,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01581"
+    },
+    {
+      "x": -3.2175,
+      "y": -0.705,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_00020"
+    },
+    {
+      "x": 0.0552,
+      "y": -1.4007,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03091"
+    },
+    {
+      "x": 0.0529,
+      "y": 1.584,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01609"
+    },
+    {
+      "x": 0.3854,
+      "y": 0.053,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01849"
+    },
+    {
+      "x": 0.4329,
+      "y": 1.228,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00654"
+    },
+    {
+      "x": -0.1237,
+      "y": 0.1702,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00908"
+    },
+    {
+      "x": 1.3189,
+      "y": -1.3386,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02749"
+    },
+    {
+      "x": 0.275,
+      "y": 1.4646,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02301"
+    },
+    {
+      "x": 0.7345,
+      "y": 0.1277,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00812"
+    },
+    {
+      "x": 0.6564,
+      "y": -1.0766,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01959"
+    },
+    {
+      "x": -0.1289,
+      "y": 0.2824,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00520"
+    },
+    {
+      "x": -2.3166,
+      "y": -0.6424,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00248"
+    },
+    {
+      "x": -2.0048,
+      "y": -1.1845,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01153"
+    },
+    {
+      "x": 0.7,
+      "y": -1.1098,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03172"
+    },
+    {
+      "x": 0.3247,
+      "y": 0.6032,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00280"
+    },
+    {
+      "x": 1.1476,
+      "y": -0.9947,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00899"
+    },
+    {
+      "x": -1.2878,
+      "y": -0.9276,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03516"
+    },
+    {
+      "x": 0.7255,
+      "y": 2.216,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01986"
+    },
+    {
+      "x": 0.1344,
+      "y": 0.8293,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01856"
+    },
+    {
+      "x": 1.2136,
+      "y": -0.2816,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01066"
+    },
+    {
+      "x": 1.6006,
+      "y": -1.9367,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00906"
+    },
+    {
+      "x": 0.8068,
+      "y": 2.0024,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02197"
+    },
+    {
+      "x": 0.795,
+      "y": 0.1047,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00338"
+    },
+    {
+      "x": 1.4659,
+      "y": -0.5579,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00933"
+    },
+    {
+      "x": 0.4462,
+      "y": -1.1862,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03169"
+    },
+    {
+      "x": -2.1875,
+      "y": -1.3596,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02417"
+    },
+    {
+      "x": 1.0746,
+      "y": -1.8831,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02014"
+    },
+    {
+      "x": 0.7677,
+      "y": 1.8258,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03691"
+    },
+    {
+      "x": -3.0435,
+      "y": -0.6026,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_02783"
+    },
+    {
+      "x": 0.1648,
+      "y": 0.3832,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00027"
+    },
+    {
+      "x": 0.2457,
+      "y": -1.377,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00426"
+    },
+    {
+      "x": -0.3208,
+      "y": 0.5984,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00031"
+    },
+    {
+      "x": 1.1269,
+      "y": 0.0724,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02528"
+    },
+    {
+      "x": 1.5261,
+      "y": -1.8075,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00351"
+    },
+    {
+      "x": 0.1395,
+      "y": -0.6269,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01140"
+    },
+    {
+      "x": -2.5002,
+      "y": -1.3251,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01880"
+    },
+    {
+      "x": 0.8996,
+      "y": -0.7718,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_02473"
+    },
+    {
+      "x": -0.4142,
+      "y": 0.1409,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02280"
+    },
+    {
+      "x": -2.0766,
+      "y": 1.9387,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03664"
+    },
+    {
+      "x": 0.585,
+      "y": 1.0597,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02097"
+    },
+    {
+      "x": 1.458,
+      "y": 0.1708,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00144"
+    },
+    {
+      "x": 0.8006,
+      "y": -0.3908,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02693"
+    },
+    {
+      "x": -0.5599,
+      "y": 1.0686,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03289"
+    },
+    {
+      "x": 0.39,
+      "y": 2.4588,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02332"
+    },
+    {
+      "x": 0.4177,
+      "y": 1.6162,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00437"
+    },
+    {
+      "x": 0.4884,
+      "y": -1.621,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02711"
+    },
+    {
+      "x": 0.0518,
+      "y": -1.3021,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00207"
+    },
+    {
+      "x": 0.1344,
+      "y": 1.3332,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02221"
+    },
+    {
+      "x": -0.0765,
+      "y": 1.4857,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01652"
+    },
+    {
+      "x": 0.8081,
+      "y": -1.5519,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02569"
+    },
+    {
+      "x": 0.4467,
+      "y": -0.7769,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02844"
+    },
+    {
+      "x": 1.0532,
+      "y": -0.189,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03386"
+    },
+    {
+      "x": 0.6044,
+      "y": -1.2154,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02364"
+    },
+    {
+      "x": 0.0951,
+      "y": -0.0907,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03086"
+    },
+    {
+      "x": -2.7058,
+      "y": 0.1071,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02877"
+    },
+    {
+      "x": 0.1404,
+      "y": 2.0264,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03544"
+    },
+    {
+      "x": -0.0658,
+      "y": -1.4728,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00989"
+    },
+    {
+      "x": -0.0942,
+      "y": 1.1756,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02833"
+    },
+    {
+      "x": 1.7673,
+      "y": -1.109,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03331"
+    },
+    {
+      "x": 0.7916,
+      "y": 1.3355,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_02611"
+    },
+    {
+      "x": 0.6869,
+      "y": -1.5141,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03848"
+    },
+    {
+      "x": 0.1715,
+      "y": -0.1465,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03045"
+    },
+    {
+      "x": 1.2031,
+      "y": 0.5315,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03899"
+    },
+    {
+      "x": 0.682,
+      "y": 0.3135,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00197"
+    },
+    {
+      "x": 0.1289,
+      "y": -0.4774,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01675"
+    },
+    {
+      "x": 0.0958,
+      "y": 1.5533,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02078"
+    },
+    {
+      "x": 0.2238,
+      "y": 0.5833,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_01367"
+    },
+    {
+      "x": -1.4004,
+      "y": -1.5581,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02055"
+    },
+    {
+      "x": 0.271,
+      "y": -0.2707,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00514"
+    },
+    {
+      "x": 0.6681,
+      "y": -0.5963,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01677"
+    },
+    {
+      "x": 0.9988,
+      "y": 0.3649,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03365"
+    },
+    {
+      "x": 1.7832,
+      "y": -0.7443,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01074"
+    },
+    {
+      "x": -0.2586,
+      "y": 2.1388,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00585"
+    },
+    {
+      "x": 0.505,
+      "y": 1.6152,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03378"
+    },
+    {
+      "x": 0.7604,
+      "y": -0.6344,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03768"
+    },
+    {
+      "x": -2.4378,
+      "y": -1.2506,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03211"
+    },
+    {
+      "x": 0.337,
+      "y": -0.9123,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02553"
+    },
+    {
+      "x": 0.063,
+      "y": 0.5454,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01067"
+    },
+    {
+      "x": 0.9525,
+      "y": -1.5768,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02307"
+    },
+    {
+      "x": 0.1877,
+      "y": -0.2231,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02200"
+    },
+    {
+      "x": 1.2337,
+      "y": -0.8395,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00186"
+    },
+    {
+      "x": -0.1946,
+      "y": 1.5761,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_02479"
+    },
+    {
+      "x": 0.9235,
+      "y": 0.0798,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01732"
+    },
+    {
+      "x": 0.771,
+      "y": -0.7524,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01834"
+    },
+    {
+      "x": -2.2316,
+      "y": -1.6404,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03476"
+    },
+    {
+      "x": -0.6955,
+      "y": -0.72,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03797"
+    },
+    {
+      "x": 0.6793,
+      "y": -0.9768,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01263"
+    },
+    {
+      "x": 0.6746,
+      "y": 1.2127,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03141"
+    },
+    {
+      "x": 1.0656,
+      "y": 1.6745,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00472"
+    },
+    {
+      "x": 0.536,
+      "y": -0.3256,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00503"
+    },
+    {
+      "x": -0.1648,
+      "y": 1.3839,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01128"
+    },
+    {
+      "x": -2.2648,
+      "y": 1.2612,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02212"
+    },
+    {
+      "x": -3.0253,
+      "y": -0.2213,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02673"
+    },
+    {
+      "x": 0.5345,
+      "y": 0.0576,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00424"
+    },
+    {
+      "x": -1.6848,
+      "y": -0.9355,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01979"
+    },
+    {
+      "x": 1.0607,
+      "y": -0.2504,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03185"
+    },
+    {
+      "x": -1.1992,
+      "y": 0.2219,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03268"
+    },
+    {
+      "x": 0.5664,
+      "y": 1.1338,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02612"
+    },
+    {
+      "x": 0.7509,
+      "y": -1.5335,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02918"
+    },
+    {
+      "x": -0.3357,
+      "y": 1.5804,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01530"
+    },
+    {
+      "x": 0.7425,
+      "y": -0.2796,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00961"
+    },
+    {
+      "x": 0.3635,
+      "y": -0.2893,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03259"
+    },
+    {
+      "x": 0.4068,
+      "y": 0.8947,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01151"
+    },
+    {
+      "x": -1.7009,
+      "y": 0.7801,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01762"
+    },
+    {
+      "x": -1.3374,
+      "y": 0.7179,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02858"
+    },
+    {
+      "x": 0.6789,
+      "y": -0.72,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03947"
+    },
+    {
+      "x": 0.916,
+      "y": 0.4696,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03502"
+    },
+    {
+      "x": 0.7232,
+      "y": 0.4877,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02239"
+    },
+    {
+      "x": 0.6898,
+      "y": 1.0232,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00482"
+    },
+    {
+      "x": -0.4034,
+      "y": 0.1148,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03540"
+    },
+    {
+      "x": 0.1566,
+      "y": -0.2125,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00923"
+    },
+    {
+      "x": -0.1125,
+      "y": 0.8432,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02465"
+    },
+    {
+      "x": 0.248,
+      "y": -0.214,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00609"
+    },
+    {
+      "x": -0.5096,
+      "y": -1.7807,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03458"
+    },
+    {
+      "x": 0.67,
+      "y": 0.3063,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00328"
+    },
+    {
+      "x": 0.3444,
+      "y": 1.2135,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00644"
+    },
+    {
+      "x": 0.1402,
+      "y": 0.5911,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03579"
+    },
+    {
+      "x": 0.4807,
+      "y": -1.2006,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01657"
+    },
+    {
+      "x": -0.2363,
+      "y": 1.6165,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02649"
+    },
+    {
+      "x": 0.4117,
+      "y": -1.4978,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01929"
+    },
+    {
+      "x": -0.5187,
+      "y": -0.8525,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00307"
+    },
+    {
+      "x": 0.1748,
+      "y": -0.9094,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03618"
+    },
+    {
+      "x": 0.2447,
+      "y": 0.3036,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03640"
+    },
+    {
+      "x": 0.4264,
+      "y": 1.7212,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01535"
+    },
+    {
+      "x": 0.1748,
+      "y": 1.1981,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03543"
+    },
+    {
+      "x": -1.6572,
+      "y": -0.6454,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01536"
+    },
+    {
+      "x": 0.7481,
+      "y": 0.2565,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02823"
+    },
+    {
+      "x": -2.1646,
+      "y": 0.1197,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00358"
+    },
+    {
+      "x": 0.336,
+      "y": 1.0493,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00725"
+    },
+    {
+      "x": 0.3085,
+      "y": 0.531,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02605"
+    },
+    {
+      "x": -0.4469,
+      "y": 0.4829,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01434"
+    },
+    {
+      "x": 0.2183,
+      "y": -1.8609,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02423"
+    },
+    {
+      "x": 1.4909,
+      "y": -0.8236,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02546"
+    },
+    {
+      "x": -2.5801,
+      "y": 1.3228,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02352"
+    },
+    {
+      "x": -2.5644,
+      "y": 1.7635,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03387"
+    },
+    {
+      "x": 1.3463,
+      "y": 0.9979,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03130"
+    },
+    {
+      "x": 0.4959,
+      "y": -0.361,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03879"
+    },
+    {
+      "x": 0.0811,
+      "y": -0.6819,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00500"
+    },
+    {
+      "x": 0.7025,
+      "y": 0.3846,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01691"
+    },
+    {
+      "x": 0.7668,
+      "y": -1.1723,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02431"
+    },
+    {
+      "x": -0.4155,
+      "y": 1.4482,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01435"
+    },
+    {
+      "x": -1.7376,
+      "y": -1.4166,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02652"
+    },
+    {
+      "x": 1.4634,
+      "y": 0.2778,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01181"
+    },
+    {
+      "x": -1.986,
+      "y": -1.8289,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00371"
+    },
+    {
+      "x": -1.7741,
+      "y": -0.4918,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01559"
+    },
+    {
+      "x": 1.5073,
+      "y": 0.6533,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02813"
+    },
+    {
+      "x": 0.9747,
+      "y": -0.6865,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02597"
+    },
+    {
+      "x": 1.1986,
+      "y": -0.8972,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01024"
+    },
+    {
+      "x": -0.2912,
+      "y": 1.2682,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03201"
+    },
+    {
+      "x": -0.0563,
+      "y": -0.8135,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00506"
+    },
+    {
+      "x": 0.7689,
+      "y": -1.1889,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03330"
+    },
+    {
+      "x": 0.8913,
+      "y": -0.875,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01770"
+    },
+    {
+      "x": 0.0766,
+      "y": -0.202,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03151"
+    },
+    {
+      "x": 1.6009,
+      "y": -0.0947,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01049"
+    },
+    {
+      "x": 0.3435,
+      "y": -2.0221,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_00068"
+    },
+    {
+      "x": 0.5799,
+      "y": -1.1045,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02187"
+    },
+    {
+      "x": -2.1537,
+      "y": -0.8821,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03722"
+    },
+    {
+      "x": -2.063,
+      "y": -1.296,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_00684"
+    },
+    {
+      "x": 0.1858,
+      "y": 1.1396,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01113"
+    },
+    {
+      "x": 0.4957,
+      "y": -0.4377,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03204"
+    },
+    {
+      "x": 0.861,
+      "y": -1.148,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02635"
+    },
+    {
+      "x": 0.0313,
+      "y": -0.1256,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01519"
+    },
+    {
+      "x": -3.2506,
+      "y": 1.894,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01230"
+    },
+    {
+      "x": 0.905,
+      "y": -0.541,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02012"
+    },
+    {
+      "x": 1.1931,
+      "y": 0.8367,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02908"
+    },
+    {
+      "x": 0.9948,
+      "y": -2.3387,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02990"
+    },
+    {
+      "x": 0.176,
+      "y": 0.2465,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03427"
+    },
+    {
+      "x": -2.141,
+      "y": 0.1467,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03632"
+    },
+    {
+      "x": -0.2701,
+      "y": -0.5872,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00115"
+    },
+    {
+      "x": 0.2889,
+      "y": -0.9682,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01906"
+    },
+    {
+      "x": 0.0198,
+      "y": -0.2696,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03782"
+    },
+    {
+      "x": -1.8154,
+      "y": -0.1525,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01262"
+    },
+    {
+      "x": 0.3464,
+      "y": 1.3425,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_02890"
+    },
+    {
+      "x": -0.3417,
+      "y": 1.899,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_00924"
+    },
+    {
+      "x": -0.0798,
+      "y": -0.6017,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00441"
+    },
+    {
+      "x": 1.3872,
+      "y": -0.5732,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03135"
+    },
+    {
+      "x": -0.3153,
+      "y": -0.4053,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02222"
+    },
+    {
+      "x": 1.6148,
+      "y": -0.6374,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01806"
+    },
+    {
+      "x": 1.3227,
+      "y": 1.6216,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_02714"
+    },
+    {
+      "x": -0.6098,
+      "y": 1.9605,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01826"
+    },
+    {
+      "x": 1.1051,
+      "y": -0.2095,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00077"
+    },
+    {
+      "x": 0.0609,
+      "y": 0.1573,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00683"
+    },
+    {
+      "x": -1.2168,
+      "y": -1.7597,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02919"
+    },
+    {
+      "x": 1.3513,
+      "y": -1.24,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00562"
+    },
+    {
+      "x": 0.5903,
+      "y": -0.1324,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00623"
+    },
+    {
+      "x": 0.6471,
+      "y": 0.1257,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03725"
+    },
+    {
+      "x": -0.4214,
+      "y": -0.2665,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00659"
+    },
+    {
+      "x": 0.4454,
+      "y": -0.7675,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02138"
+    },
+    {
+      "x": 0.4716,
+      "y": 1.4684,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02839"
+    },
+    {
+      "x": -4.1506,
+      "y": -0.5098,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01039"
+    },
+    {
+      "x": 0.6298,
+      "y": -1.1632,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02894"
+    },
+    {
+      "x": 0.9311,
+      "y": -0.884,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01801"
+    },
+    {
+      "x": 0.534,
+      "y": 1.5782,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02885"
+    },
+    {
+      "x": 0.4033,
+      "y": 0.1983,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03594"
+    },
+    {
+      "x": -0.3359,
+      "y": -0.9621,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00124"
+    },
+    {
+      "x": 1.4914,
+      "y": -1.5146,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01913"
+    },
+    {
+      "x": -1.65,
+      "y": 0.9587,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01016"
+    },
+    {
+      "x": -0.245,
+      "y": 0.283,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00276"
+    },
+    {
+      "x": 0.6927,
+      "y": -1.0799,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03800"
+    },
+    {
+      "x": 0.8785,
+      "y": -0.1721,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03968"
+    },
+    {
+      "x": 0.8817,
+      "y": -0.1415,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01710"
+    },
+    {
+      "x": 0.4368,
+      "y": 0.8936,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03178"
+    },
+    {
+      "x": 0.9753,
+      "y": 0.5216,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01486"
+    },
+    {
+      "x": 0.7511,
+      "y": -0.7244,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_02960"
+    },
+    {
+      "x": 0.6618,
+      "y": -0.0694,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00925"
+    },
+    {
+      "x": 0.2023,
+      "y": 1.3145,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01277"
+    },
+    {
+      "x": 0.1858,
+      "y": 1.8816,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01521"
+    },
+    {
+      "x": 1.0831,
+      "y": -1.3051,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01814"
+    },
+    {
+      "x": 0.8602,
+      "y": -0.0293,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01195"
+    },
+    {
+      "x": 0.5828,
+      "y": 0.185,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02743"
+    },
+    {
+      "x": 1.1865,
+      "y": 0.2814,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03487"
+    },
+    {
+      "x": -0.011,
+      "y": -0.9747,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01460"
+    },
+    {
+      "x": 0.2635,
+      "y": 0.2254,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02739"
+    },
+    {
+      "x": 0.3514,
+      "y": 1.6517,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_03762"
+    },
+    {
+      "x": 0.4521,
+      "y": 1.0522,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02249"
+    },
+    {
+      "x": 0.5205,
+      "y": 0.5225,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02320"
+    },
+    {
+      "x": 0.7352,
+      "y": -0.0052,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01693"
+    },
+    {
+      "x": -0.0955,
+      "y": 0.0419,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02158"
+    },
+    {
+      "x": -2.4182,
+      "y": -1.1389,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02811"
+    },
+    {
+      "x": -0.5703,
+      "y": 2.3565,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_01612"
+    },
+    {
+      "x": -0.103,
+      "y": 1.449,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00940"
+    },
+    {
+      "x": 0.0276,
+      "y": -0.6634,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02515"
+    },
+    {
+      "x": -0.2673,
+      "y": -0.6731,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00536"
+    },
+    {
+      "x": -1.3203,
+      "y": -1.047,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01082"
+    },
+    {
+      "x": 0.6751,
+      "y": -1.8469,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03271"
+    },
+    {
+      "x": 1.005,
+      "y": -0.928,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_00092"
+    },
+    {
+      "x": 0.4207,
+      "y": 1.5642,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01876"
+    },
+    {
+      "x": -0.1509,
+      "y": 1.753,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03095"
+    },
+    {
+      "x": 1.021,
+      "y": -0.3913,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01516"
+    },
+    {
+      "x": -0.4213,
+      "y": 0.5006,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02961"
+    },
+    {
+      "x": 0.7537,
+      "y": -1.2138,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00997"
+    },
+    {
+      "x": 1.3227,
+      "y": -0.583,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03613"
+    },
+    {
+      "x": 0.2323,
+      "y": 0.2579,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02031"
+    },
+    {
+      "x": -2.2469,
+      "y": -0.9059,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00025"
+    },
+    {
+      "x": 0.0835,
+      "y": 0.7611,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_01995"
+    },
+    {
+      "x": 0.332,
+      "y": 1.1726,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03006"
+    },
+    {
+      "x": -2.9726,
+      "y": 1.36,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00820"
+    },
+    {
+      "x": 0.5526,
+      "y": -1.1707,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_02980"
+    },
+    {
+      "x": 0.2434,
+      "y": -1.2532,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00450"
+    },
+    {
+      "x": 0.3243,
+      "y": -1.0407,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01724"
+    },
+    {
+      "x": 0.7672,
+      "y": -1.3486,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00320"
+    },
+    {
+      "x": 0.1892,
+      "y": -1.4012,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01466"
+    },
+    {
+      "x": 0.8036,
+      "y": -0.3604,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03697"
+    },
+    {
+      "x": 0.7382,
+      "y": 1.7502,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00164"
+    },
+    {
+      "x": -0.0927,
+      "y": -0.2741,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01772"
+    },
+    {
+      "x": -1.8806,
+      "y": -1.9645,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02814"
+    },
+    {
+      "x": 1.6591,
+      "y": -0.6857,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00918"
+    },
+    {
+      "x": -0.197,
+      "y": 1.4659,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03173"
+    },
+    {
+      "x": 0.5457,
+      "y": 0.8467,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02753"
+    },
+    {
+      "x": 0.0878,
+      "y": 2.8789,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00860"
+    },
+    {
+      "x": 0.5573,
+      "y": 1.0653,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01031"
+    },
+    {
+      "x": 0.0224,
+      "y": 0.5441,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01072"
+    },
+    {
+      "x": 0.8487,
+      "y": 0.2984,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02766"
+    },
+    {
+      "x": 0.2289,
+      "y": 0.9402,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03503"
+    },
+    {
+      "x": 0.0316,
+      "y": 0.5189,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03144"
+    },
+    {
+      "x": 0.3268,
+      "y": 0.7461,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00744"
+    },
+    {
+      "x": 0.1478,
+      "y": -0.0699,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01199"
+    },
+    {
+      "x": 0.6169,
+      "y": 2.4925,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03506"
+    },
+    {
+      "x": 0.9646,
+      "y": 0.2779,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01127"
+    },
+    {
+      "x": 0.0734,
+      "y": 0.0796,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01590"
+    },
+    {
+      "x": 0.5512,
+      "y": 0.0215,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03765"
+    },
+    {
+      "x": 0.65,
+      "y": 1.8849,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02167"
+    },
+    {
+      "x": 0.5977,
+      "y": -0.4489,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00730"
+    },
+    {
+      "x": 1.2999,
+      "y": -0.1419,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03858"
+    },
+    {
+      "x": 1.209,
+      "y": -0.2676,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01188"
+    },
+    {
+      "x": 0.8693,
+      "y": -1.5685,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01454"
+    },
+    {
+      "x": 0.1188,
+      "y": -0.2591,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03138"
+    },
+    {
+      "x": -2.8498,
+      "y": 0.89,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00288"
+    },
+    {
+      "x": 0.3247,
+      "y": -1.1257,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01065"
+    },
+    {
+      "x": 0.0589,
+      "y": 0.2989,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00079"
+    },
+    {
+      "x": -0.6654,
+      "y": 1.2713,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01096"
+    },
+    {
+      "x": 1.0074,
+      "y": 0.1959,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00302"
+    },
+    {
+      "x": 0.0282,
+      "y": 0.9776,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_02302"
+    },
+    {
+      "x": 0.2055,
+      "y": -1.2211,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03845"
+    },
+    {
+      "x": 1.1192,
+      "y": -0.1919,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03303"
+    },
+    {
+      "x": -1.9855,
+      "y": -1.9555,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02940"
+    },
+    {
+      "x": 0.8106,
+      "y": 1.248,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02442"
+    },
+    {
+      "x": -0.1958,
+      "y": -0.1036,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_03653"
+    },
+    {
+      "x": -2.0467,
+      "y": 0.5809,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00024"
+    },
+    {
+      "x": 1.4201,
+      "y": 1.2298,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_00291"
+    },
+    {
+      "x": 0.8446,
+      "y": -1.6726,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00647"
+    },
+    {
+      "x": 0.7689,
+      "y": -0.6591,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00879"
+    },
+    {
+      "x": 0.7741,
+      "y": -1.4349,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01833"
+    },
+    {
+      "x": 1.1403,
+      "y": -0.3608,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03914"
+    },
+    {
+      "x": -0.184,
+      "y": 0.811,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00545"
+    },
+    {
+      "x": -2.0792,
+      "y": -0.5188,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02451"
+    },
+    {
+      "x": -2.6872,
+      "y": 1.1689,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03840"
+    },
+    {
+      "x": 0.4897,
+      "y": 0.6778,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02723"
+    },
+    {
+      "x": 0.7547,
+      "y": 0.0064,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02319"
+    },
+    {
+      "x": 0.7624,
+      "y": 0.6983,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03229"
+    },
+    {
+      "x": -1.1337,
+      "y": -2.0122,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03348"
+    },
+    {
+      "x": 0.2191,
+      "y": 0.0467,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00221"
+    },
+    {
+      "x": 0.1748,
+      "y": -0.2634,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00735"
+    },
+    {
+      "x": -1.3321,
+      "y": -2.5912,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01718"
+    },
+    {
+      "x": -0.0762,
+      "y": 0.6323,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03686"
+    },
+    {
+      "x": 1.1999,
+      "y": -1.1213,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_03565"
+    },
+    {
+      "x": -1.689,
+      "y": -1.4213,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02458"
+    },
+    {
+      "x": 0.1674,
+      "y": 0.8797,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00298"
+    },
+    {
+      "x": 0.481,
+      "y": 0.3747,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01211"
+    },
+    {
+      "x": 0.6501,
+      "y": -1.6302,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02521"
+    },
+    {
+      "x": -1.2328,
+      "y": -1.7401,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01892"
+    },
+    {
+      "x": 0.0491,
+      "y": 1.8075,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02472"
+    },
+    {
+      "x": -1.503,
+      "y": -1.1754,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02237"
+    },
+    {
+      "x": -2.0271,
+      "y": 0.0612,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01903"
+    },
+    {
+      "x": -2.4338,
+      "y": -1.1155,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01678"
+    },
+    {
+      "x": 1.0284,
+      "y": 0.096,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03321"
+    },
+    {
+      "x": -2.1321,
+      "y": 0.4733,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_02954"
+    },
+    {
+      "x": 0.6713,
+      "y": -1.9542,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01697"
+    },
+    {
+      "x": 0.792,
+      "y": 0.0676,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_01944"
+    },
+    {
+      "x": 0.9451,
+      "y": -0.9375,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00234"
+    },
+    {
+      "x": -1.3026,
+      "y": -0.2458,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00996"
+    },
+    {
+      "x": -2.6622,
+      "y": 0.3087,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_01686"
+    },
+    {
+      "x": 1.1621,
+      "y": 0.4068,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01935"
+    },
+    {
+      "x": 0.7148,
+      "y": 1.396,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_01083"
+    },
+    {
+      "x": 0.4693,
+      "y": 0.6217,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02207"
+    },
+    {
+      "x": 0.7626,
+      "y": 0.0468,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03930"
+    },
+    {
+      "x": -0.0872,
+      "y": 1.242,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01097"
+    },
+    {
+      "x": -0.5564,
+      "y": -0.0387,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01707"
+    },
+    {
+      "x": 1.4225,
+      "y": -0.2936,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01108"
+    },
+    {
+      "x": -2.9066,
+      "y": -0.2823,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_03377"
+    },
+    {
+      "x": 0.2168,
+      "y": 1.048,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00330"
+    },
+    {
+      "x": 1.1076,
+      "y": -0.7664,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02558"
+    },
+    {
+      "x": 1.1037,
+      "y": 0.8013,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01469"
+    },
+    {
+      "x": 1.0466,
+      "y": 1.7917,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01130"
+    },
+    {
+      "x": 0.3358,
+      "y": -0.8135,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03875"
+    },
+    {
+      "x": 0.4736,
+      "y": -0.4586,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00698"
+    },
+    {
+      "x": -0.8336,
+      "y": 0.4971,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01627"
+    },
+    {
+      "x": 0.2555,
+      "y": -1.5309,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03410"
+    },
+    {
+      "x": 0.7532,
+      "y": -0.559,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03054"
+    },
+    {
+      "x": 0.5409,
+      "y": -0.9418,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02868"
+    },
+    {
+      "x": 0.6218,
+      "y": 1.1889,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_01228"
+    },
+    {
+      "x": 0.931,
+      "y": -0.4394,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01360"
+    },
+    {
+      "x": 0.6363,
+      "y": 0.4276,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02801"
+    },
+    {
+      "x": 0.4963,
+      "y": -1.6826,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03174"
+    },
+    {
+      "x": 1.0072,
+      "y": -0.2685,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01118"
+    },
+    {
+      "x": 0.4137,
+      "y": 1.5185,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03539"
+    },
+    {
+      "x": -1.5802,
+      "y": -0.1396,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01577"
+    },
+    {
+      "x": 1.4022,
+      "y": -0.836,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_03085"
+    },
+    {
+      "x": -2.2359,
+      "y": -1.6167,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_00160"
+    },
+    {
+      "x": 0.7611,
+      "y": 0.348,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01529"
+    },
+    {
+      "x": -0.681,
+      "y": 1.0049,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00540"
+    },
+    {
+      "x": 1.6008,
+      "y": -1.6823,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02227"
+    },
+    {
+      "x": 0.5046,
+      "y": -0.7698,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03284"
+    },
+    {
+      "x": -2.0824,
+      "y": 1.3956,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02772"
+    },
+    {
+      "x": 0.5506,
+      "y": 0.2,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03498"
+    },
+    {
+      "x": 0.5506,
+      "y": 1.7375,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00076"
+    },
+    {
+      "x": 0.4168,
+      "y": -1.6841,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02577"
+    },
+    {
+      "x": 0.6211,
+      "y": 0.0166,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00810"
+    },
+    {
+      "x": -0.1836,
+      "y": 1.3354,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03971"
+    },
+    {
+      "x": 0.4733,
+      "y": -1.9371,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03153"
+    },
+    {
+      "x": -1.4028,
+      "y": -2.1068,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01246"
+    },
+    {
+      "x": 0.2143,
+      "y": -0.0247,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_03356"
+    },
+    {
+      "x": -1.6503,
+      "y": 0.5317,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01336"
+    },
+    {
+      "x": -0.1974,
+      "y": 0.4994,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00512"
+    },
+    {
+      "x": 0.0673,
+      "y": 0.2164,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_01161"
+    },
+    {
+      "x": 1.1809,
+      "y": -0.1174,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03728"
+    },
+    {
+      "x": 0.3403,
+      "y": 0.5004,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00591"
+    },
+    {
+      "x": 0.1302,
+      "y": -1.1621,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00136"
+    },
+    {
+      "x": 0.62,
+      "y": -1.4197,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03205"
+    },
+    {
+      "x": 0.9405,
+      "y": 0.5042,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01595"
+    },
+    {
+      "x": -2.5826,
+      "y": 0.5916,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_03609"
+    },
+    {
+      "x": 0.9515,
+      "y": -0.1001,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_02309"
+    },
+    {
+      "x": 0.2693,
+      "y": -0.1534,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_02589"
+    },
+    {
+      "x": 0.846,
+      "y": -1.4605,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00919"
+    },
+    {
+      "x": 1.0777,
+      "y": -1.3533,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01625"
+    },
+    {
+      "x": 1.487,
+      "y": -1.5715,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_01010"
+    },
+    {
+      "x": 0.4027,
+      "y": -1.5101,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00401"
+    },
+    {
+      "x": 0.7533,
+      "y": -0.3959,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_03009"
+    },
+    {
+      "x": 0.1603,
+      "y": 0.9161,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00516"
+    },
+    {
+      "x": 0.2166,
+      "y": -1.0944,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03711"
+    },
+    {
+      "x": 0.4789,
+      "y": -0.867,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02886"
+    },
+    {
+      "x": 0.4866,
+      "y": -0.2528,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_00904"
+    },
+    {
+      "x": 0.1413,
+      "y": 2.2724,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01851"
+    },
+    {
+      "x": 0.5575,
+      "y": -0.7287,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_02069"
+    },
+    {
+      "x": 0.3227,
+      "y": 0.1807,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02361"
+    },
+    {
+      "x": 0.2978,
+      "y": 2.2739,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03047"
+    },
+    {
+      "x": 0.4278,
+      "y": -0.5839,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01550"
+    },
+    {
+      "x": 0.3359,
+      "y": -0.045,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03799"
+    },
+    {
+      "x": -0.0844,
+      "y": -1.328,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03407"
+    },
+    {
+      "x": -0.3642,
+      "y": 0.3885,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00492"
+    },
+    {
+      "x": 0.3227,
+      "y": 1.6197,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02252"
+    },
+    {
+      "x": -0.2394,
+      "y": 0.1113,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_02634"
+    },
+    {
+      "x": 0.3411,
+      "y": 0.629,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00890"
+    },
+    {
+      "x": -2.4166,
+      "y": -1.5375,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01905"
+    },
+    {
+      "x": 1.0543,
+      "y": -0.1657,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02808"
+    },
+    {
+      "x": 1.1111,
+      "y": 0.2182,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03373"
+    },
+    {
+      "x": 0.6047,
+      "y": 1.7641,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00666"
+    },
+    {
+      "x": 0.7653,
+      "y": 0.3267,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03012"
+    },
+    {
+      "x": 0.3787,
+      "y": -0.7161,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02983"
+    },
+    {
+      "x": 0.1295,
+      "y": 0.783,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_01695"
+    },
+    {
+      "x": 0.5875,
+      "y": 0.4969,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01685"
+    },
+    {
+      "x": -2.3851,
+      "y": -0.1708,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_00414"
+    },
+    {
+      "x": -2.4756,
+      "y": 1.9479,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03839"
+    },
+    {
+      "x": 0.4935,
+      "y": -0.5585,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00563"
+    },
+    {
+      "x": 0.4241,
+      "y": 0.1884,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_02101"
+    },
+    {
+      "x": -2.6376,
+      "y": 0.6139,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00035"
+    },
+    {
+      "x": -3.0545,
+      "y": -1.2994,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03202"
+    },
+    {
+      "x": -2.9274,
+      "y": 1.1805,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03221"
+    },
+    {
+      "x": 0.4941,
+      "y": 1.4797,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_03634"
+    },
+    {
+      "x": 0.1059,
+      "y": 2.2843,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02438"
+    },
+    {
+      "x": 1.0845,
+      "y": -1.1631,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00574"
+    },
+    {
+      "x": 0.7321,
+      "y": 0.977,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_03572"
+    },
+    {
+      "x": 0.1395,
+      "y": -0.2516,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00858"
+    },
+    {
+      "x": 0.0035,
+      "y": 0.3709,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01565"
+    },
+    {
+      "x": 0.4673,
+      "y": 1.2605,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00369"
+    },
+    {
+      "x": 0.0741,
+      "y": 0.8724,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00606"
+    },
+    {
+      "x": 0.1765,
+      "y": 0.9268,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_00264"
+    },
+    {
+      "x": -1.3418,
+      "y": -1.7081,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00618"
+    },
+    {
+      "x": 0.0687,
+      "y": 1.7394,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03158"
+    },
+    {
+      "x": 1.8198,
+      "y": 0.317,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02343"
+    },
+    {
+      "x": 0.6988,
+      "y": -0.2843,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00381"
+    },
+    {
+      "x": -1.4552,
+      "y": -0.5508,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03270"
+    },
+    {
+      "x": 0.1221,
+      "y": 0.1497,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_02228"
+    },
+    {
+      "x": 0.2306,
+      "y": -0.1493,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_02706"
+    },
+    {
+      "x": -1.7482,
+      "y": -0.3392,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03952"
+    },
+    {
+      "x": 0.0893,
+      "y": 0.2008,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03077"
+    },
+    {
+      "x": 0.8074,
+      "y": -0.7204,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02865"
+    },
+    {
+      "x": -3.503,
+      "y": 1.2628,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01407"
+    },
+    {
+      "x": 0.6444,
+      "y": -0.7551,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03297"
+    },
+    {
+      "x": 0.6897,
+      "y": 0.7836,
+      "cluster": 1,
+      "risk": "High Risk",
+      "label": "Applicant_02530"
+    },
+    {
+      "x": -1.1539,
+      "y": -0.2104,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_00341"
+    },
+    {
+      "x": 0.033,
+      "y": 0.3684,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00324"
+    },
+    {
+      "x": -2.4821,
+      "y": -0.3062,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02684"
+    },
+    {
+      "x": 0.9496,
+      "y": -1.1954,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03436"
+    },
+    {
+      "x": -2.0882,
+      "y": -0.0572,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03973"
+    },
+    {
+      "x": -0.2143,
+      "y": 0.0814,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02757"
+    },
+    {
+      "x": 0.8239,
+      "y": 2.0694,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_03214"
+    },
+    {
+      "x": 0.6125,
+      "y": 1.8318,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03975"
+    },
+    {
+      "x": 0.4809,
+      "y": 0.3264,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02061"
+    },
+    {
+      "x": 0.1674,
+      "y": -0.8599,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02191"
+    },
+    {
+      "x": -2.2183,
+      "y": 1.5208,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00103"
+    },
+    {
+      "x": 0.685,
+      "y": 0.0513,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02680"
+    },
+    {
+      "x": -3.3424,
+      "y": 0.3915,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01157"
+    },
+    {
+      "x": 0.445,
+      "y": -1.5062,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00404"
+    },
+    {
+      "x": 0.4122,
+      "y": -1.0401,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02586"
+    },
+    {
+      "x": 0.3656,
+      "y": 1.5995,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02166"
+    },
+    {
+      "x": -1.6757,
+      "y": -1.3276,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02345"
+    },
+    {
+      "x": 0.5323,
+      "y": -0.8351,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02430"
+    },
+    {
+      "x": 0.9231,
+      "y": 1.6768,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02182"
+    },
+    {
+      "x": 0.5206,
+      "y": -1.3634,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03145"
+    },
+    {
+      "x": 0.4364,
+      "y": 1.5937,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02021"
+    },
+    {
+      "x": 0.6991,
+      "y": 2.0961,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02682"
+    },
+    {
+      "x": 0.5486,
+      "y": 1.7547,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03566"
+    },
+    {
+      "x": 0.381,
+      "y": -0.2063,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01969"
+    },
+    {
+      "x": 0.3001,
+      "y": 0.1788,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03291"
+    },
+    {
+      "x": 0.3872,
+      "y": -0.4923,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_00528"
+    },
+    {
+      "x": 0.7063,
+      "y": -1.2833,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00784"
+    },
+    {
+      "x": 0.2178,
+      "y": -1.5455,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02933"
+    },
+    {
+      "x": 0.9597,
+      "y": 0.5734,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01433"
+    },
+    {
+      "x": -3.4802,
+      "y": -0.771,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00834"
+    },
+    {
+      "x": 1.7284,
+      "y": -0.5829,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02618"
+    },
+    {
+      "x": 0.6788,
+      "y": 0.2667,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02962"
+    },
+    {
+      "x": 0.4071,
+      "y": 1.2516,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03033"
+    },
+    {
+      "x": 0.5807,
+      "y": 0.5869,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_00632"
+    },
+    {
+      "x": -1.2291,
+      "y": 0.4627,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02154"
+    },
+    {
+      "x": -3.4839,
+      "y": 2.6324,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_02526"
+    },
+    {
+      "x": -2.7267,
+      "y": -0.0564,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03886"
+    },
+    {
+      "x": 0.3262,
+      "y": -0.1979,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02028"
+    },
+    {
+      "x": 0.8969,
+      "y": 0.5557,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03717"
+    },
+    {
+      "x": 0.9878,
+      "y": -1.5863,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00440"
+    },
+    {
+      "x": 0.2688,
+      "y": -0.2025,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_02272"
+    },
+    {
+      "x": -0.2912,
+      "y": 1.3418,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01683"
+    },
+    {
+      "x": -2.1061,
+      "y": 0.5464,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_01664"
+    },
+    {
+      "x": -1.2857,
+      "y": 0.5095,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02517"
+    },
+    {
+      "x": 0.1449,
+      "y": 1.2937,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03044"
+    },
+    {
+      "x": -2.9114,
+      "y": 1.7606,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00546"
+    },
+    {
+      "x": -0.0391,
+      "y": 1.6109,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03801"
+    },
+    {
+      "x": -2.9502,
+      "y": -0.1828,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02642"
+    },
+    {
+      "x": 0.9701,
+      "y": 0.2408,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02030"
+    },
+    {
+      "x": 1.4899,
+      "y": 0.8358,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_00954"
+    },
+    {
+      "x": -2.774,
+      "y": 1.5677,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00897"
+    },
+    {
+      "x": 0.4089,
+      "y": -1.0454,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00464"
+    },
+    {
+      "x": 0.2864,
+      "y": 0.2877,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01733"
+    },
+    {
+      "x": 0.7465,
+      "y": 1.1697,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01388"
+    },
+    {
+      "x": 0.7722,
+      "y": 0.3111,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02656"
+    },
+    {
+      "x": -1.873,
+      "y": -0.3085,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_03890"
+    },
+    {
+      "x": 0.5653,
+      "y": -0.7467,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03428"
+    },
+    {
+      "x": 0.4125,
+      "y": -1.5279,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03087"
+    },
+    {
+      "x": 0.9273,
+      "y": 0.4738,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03626"
+    },
+    {
+      "x": 0.2903,
+      "y": -0.2593,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_03134"
+    },
+    {
+      "x": -0.2689,
+      "y": 1.8683,
+      "cluster": 3,
+      "risk": "Low Risk",
+      "label": "Applicant_00944"
+    },
+    {
+      "x": -0.3139,
+      "y": 1.2356,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01018"
+    },
+    {
+      "x": 0.3817,
+      "y": 0.4727,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01218"
+    },
+    {
+      "x": -1.3811,
+      "y": 0.6483,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_02132"
+    },
+    {
+      "x": 1.0086,
+      "y": -0.0906,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02335"
+    },
+    {
+      "x": 0.7551,
+      "y": -0.8968,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00642"
+    },
+    {
+      "x": 0.8932,
+      "y": 1.1776,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_01511"
+    },
+    {
+      "x": 0.4997,
+      "y": 0.0231,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01023"
+    },
+    {
+      "x": -2.4513,
+      "y": -1.3128,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00589"
+    },
+    {
+      "x": -2.7478,
+      "y": -0.5457,
+      "cluster": 2,
+      "risk": "Low Risk",
+      "label": "Applicant_01947"
+    },
+    {
+      "x": 0.4851,
+      "y": -0.2291,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03991"
+    },
+    {
+      "x": -1.5232,
+      "y": -1.6218,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_03442"
+    },
+    {
+      "x": 1.0778,
+      "y": 1.033,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_02603"
+    },
+    {
+      "x": -2.5978,
+      "y": -1.2627,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02936"
+    },
+    {
+      "x": 0.3617,
+      "y": -0.4702,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03706"
+    },
+    {
+      "x": 0.9555,
+      "y": 0.0659,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02581"
+    },
+    {
+      "x": -2.2554,
+      "y": -1.1495,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01769"
+    },
+    {
+      "x": -0.0944,
+      "y": -0.5087,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02704"
+    },
+    {
+      "x": -0.0433,
+      "y": 0.7729,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_03496"
+    },
+    {
+      "x": -2.8236,
+      "y": 1.0415,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_01332"
+    },
+    {
+      "x": 0.563,
+      "y": 1.2637,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_02735"
+    },
+    {
+      "x": -0.1032,
+      "y": 1.5992,
+      "cluster": 1,
+      "risk": "Low Risk",
+      "label": "Applicant_01794"
+    },
+    {
+      "x": 0.1108,
+      "y": -0.6753,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_02956"
+    },
+    {
+      "x": 0.5158,
+      "y": -1.0402,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01765"
+    },
+    {
+      "x": -2.4056,
+      "y": -1.0607,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00693"
+    },
+    {
+      "x": 0.0822,
+      "y": 0.9258,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_03740"
+    },
+    {
+      "x": -2.7671,
+      "y": -0.5226,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03894"
+    },
+    {
+      "x": 0.2353,
+      "y": -0.2935,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_02873"
+    },
+    {
+      "x": 0.9238,
+      "y": 0.0784,
+      "cluster": 0,
+      "risk": "Low Risk",
+      "label": "Applicant_02173"
+    },
+    {
+      "x": -2.714,
+      "y": -0.9493,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_00382"
+    },
+    {
+      "x": -0.3352,
+      "y": -0.4438,
+      "cluster": 0,
+      "risk": "High Risk",
+      "label": "Applicant_01028"
+    },
+    {
+      "x": -2.5498,
+      "y": -1.3198,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_03001"
+    },
+    {
+      "x": -0.2588,
+      "y": -0.8097,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_01827"
+    },
+    {
+      "x": 0.412,
+      "y": -0.5757,
+      "cluster": 4,
+      "risk": "High Risk",
+      "label": "Applicant_00376"
+    },
+    {
+      "x": 0.4772,
+      "y": 0.0617,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_01646"
+    },
+    {
+      "x": 0.8797,
+      "y": 0.2785,
+      "cluster": 3,
+      "risk": "High Risk",
+      "label": "Applicant_00830"
+    },
+    {
+      "x": -2.5017,
+      "y": -0.8212,
+      "cluster": 2,
+      "risk": "High Risk",
+      "label": "Applicant_02011"
+    },
+    {
+      "x": 1.1414,
+      "y": -2.0581,
+      "cluster": 4,
+      "risk": "Low Risk",
+      "label": "Applicant_00303"
+    }
+  ]
+}

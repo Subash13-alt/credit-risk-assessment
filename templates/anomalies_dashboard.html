@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block title %}Anomaly Detection | CreditSense AI{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <span class="eyebrow"><span class="dot"></span> Unsupervised Learning &middot; Isolation Forest</span>
+  <h2>Anomaly Detection Dashboard</h2>
+  <p class="lead">Isolation Forest flags applications whose financial profile looks unusual relative to the rest of the pool — <strong>entirely without using the Risk label</strong> — a common real-world banking use case for fraud triage and data-quality review. Risk labels are shown only afterwards, to check whether flagged applications skew High Risk.</p>
+</section>
+
+<div class="container">
+  <div class="grid-4" id="kpiRow">
+    <div class="kpi-card"><div class="kpi-label">Applicants Analyzed</div><div class="kpi-value" id="kpiN">--</div></div>
+    <div class="kpi-card"><div class="kpi-label">Flagged Anomalies</div><div class="kpi-value" id="kpiAnomalies">--</div><div class="kpi-sub" id="kpiAnomalyRate"></div></div>
+    <div class="kpi-card"><div class="kpi-label">High Risk Rate (Overall)</div><div class="kpi-value" id="kpiOverallRate">--</div></div>
+    <div class="kpi-card"><div class="kpi-label">High Risk Rate (Anomalies)</div><div class="kpi-value" id="kpiAnomalyRiskRate" style="color:var(--danger);">--</div><div class="kpi-sub">vs. overall population, above</div></div>
+  </div>
+
+  <section class="panel" style="margin-top:24px;">
+    <div class="panel-header">
+      <div>
+        <h3>2D Projection: Normal vs. Anomalous Applicants</h3>
+        <p id="scatterSubtitle">Each point is one applicant. Red points were flagged by Isolation Forest.</p>
+      </div>
+    </div>
+    <div id="scatterWrap" style="position:relative;">
+      <svg id="scatterSvg" viewBox="0 0 640 460" style="width:100%; height:auto; background:var(--surface-2); border-radius:var(--radius-md);"></svg>
+      <div id="scatterTooltip" class="scatter-tooltip"></div>
+    </div>
+    <div class="legend" style="margin-top:14px;">
+      <span><span class="dot" style="background:#94A3B8"></span> Normal</span>
+      <span><span class="dot" style="background:#B91C1C"></span> Flagged Anomaly</span>
+    </div>
+  </section>
+
+  <section class="panel" style="margin-top:24px;">
+    <div class="panel-header">
+      <div>
+        <h3>Most Anomalous Applicants</h3>
+        <p>Ranked by anomaly score (more negative = more unusual). Useful as a manual-review queue.</p>
+      </div>
+    </div>
+    <div id="anomalyTableWrap"><p class="empty-msg">Loading&hellip;</p></div>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .scatter-point{ cursor:pointer; transition:r 120ms ease; }
+  .scatter-point:hover{ r:6; }
+  .scatter-tooltip{
+    position:absolute; pointer-events:none; background:var(--navy); color:#fff; font-size:0.75rem;
+    padding:8px 11px; border-radius:8px; max-width:240px; box-shadow:var(--shadow-md);
+    opacity:0; transition:opacity 120ms ease; z-index:10;
+  }
+  .scatter-tooltip.show{ opacity:1; }
+</style>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function(){
+  "use strict";
+
+  fetch('/anomalies-data')
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if(data.error){ throw new Error(data.error); }
+      renderKpis(data);
+      renderScatter(data);
+      renderAnomalyTable(data.top_anomalies || []);
+    })
+    .catch(function(){
+      document.getElementById('scatterWrap').innerHTML = '<p class="empty-msg">Anomaly detection data unavailable. Run train_model.py first.</p>';
+      document.getElementById('anomalyTableWrap').innerHTML = '';
+    });
+
+  function renderKpis(data){
+    document.getElementById('kpiN').textContent = data.n_applicants;
+    document.getElementById('kpiAnomalies').textContent = data.n_anomalies;
+    document.getElementById('kpiAnomalyRate').textContent = data.anomaly_rate_pct + '% of applicants (contamination=' + data.contamination + ')';
+    document.getElementById('kpiOverallRate').textContent = data.overall_high_risk_rate_pct + '%';
+    document.getElementById('kpiAnomalyRiskRate').textContent = data.anomaly_high_risk_rate_pct != null ? data.anomaly_high_risk_rate_pct + '%' : '--';
+  }
+
+  function renderScatter(data){
+    const svg = document.getElementById('scatterSvg');
+    const tooltip = document.getElementById('scatterTooltip');
+    const points = data.scatter;
+
+    const xs = points.map(function(p){ return p.x; });
+    const ys = points.map(function(p){ return p.y; });
+    const xMin = Math.min.apply(null, xs), xMax = Math.max.apply(null, xs);
+    const yMin = Math.min.apply(null, ys), yMax = Math.max.apply(null, ys);
+    const pad = 30, w = 640, h = 460;
+
+    function scaleX(x){ return pad + (x - xMin) / (xMax - xMin || 1) * (w - 2*pad); }
+    function scaleY(y){ return h - pad - (y - yMin) / (yMax - yMin || 1) * (h - 2*pad); }
+
+    // draw normal points first, anomalies on top so they're visible
+    const normals = points.filter(function(p){ return !p.is_anomaly; });
+    const anomalies = points.filter(function(p){ return p.is_anomaly; });
+    const ordered = normals.concat(anomalies);
+
+    let svgContent = '';
+    ordered.forEach(function(p, i){
+      const color = p.is_anomaly ? '#B91C1C' : '#94A3B8';
+      const r = p.is_anomaly ? 5 : 3.5;
+      svgContent += '<circle class="scatter-point" data-idx="' + i + '" cx="' + scaleX(p.x).toFixed(1) + '" cy="' + scaleY(p.y).toFixed(1) + '" r="' + r + '" fill="' + color + '" fill-opacity="0.8" stroke="' + color + '" stroke-width="1"></circle>';
+    });
+    svg.innerHTML = svgContent;
+
+    svg.querySelectorAll('.scatter-point').forEach(function(circle){
+      circle.addEventListener('mousemove', function(e){
+        const idx = parseInt(circle.getAttribute('data-idx'), 10);
+        const p = ordered[idx];
+        tooltip.innerHTML = '<b>' + (p.is_anomaly ? 'Anomaly' : 'Normal') + '</b><br>' + p.label + '<br>Risk: ' + p.risk;
+        tooltip.style.left = (e.offsetX + 14) + 'px';
+        tooltip.style.top = (e.offsetY + 10) + 'px';
+        tooltip.classList.add('show');
+      });
+      circle.addEventListener('mouseleave', function(){ tooltip.classList.remove('show'); });
+    });
+  }
+
+  function renderAnomalyTable(items){
+    const wrap = document.getElementById('anomalyTableWrap');
+    if(!items.length){ wrap.innerHTML = '<p class="empty-msg">No anomalies flagged.</p>'; return; }
+
+    let html = '<div class="table-wrap"><table class="data-table"><thead><tr>' +
+      '<th>Applicant</th><th>Anomaly Score</th><th>Risk</th><th>Age</th><th>Income</th><th>Loan</th><th>CIBIL</th><th>DTI</th><th>Employment</th></tr></thead><tbody>';
+    items.forEach(function(a){
+      const isLow = a.risk === 'Low Risk';
+      html += '<tr><td>' + a.applicant_name + '</td><td>' + a.anomaly_score + '</td>' +
+        '<td><span class="badge ' + (isLow?'low':'high') + '">' + a.risk + '</span></td>' +
+        '<td>' + a.age + '</td><td>\u20b9' + Number(a.annual_income).toLocaleString() + '</td>' +
+        '<td>\u20b9' + Number(a.loan_amount).toLocaleString() + '</td><td>' + a.cibil_score + '</td>' +
+        '<td>' + a.debt_to_income_ratio + '%</td><td>' + a.employment_status + '</td></tr>';
+    });
+    html += '</tbody></table></div>';
+    wrap.innerHTML = html;
+  }
+})();
+</script>
+{% endblock %}

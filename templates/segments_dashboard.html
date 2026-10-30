@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block title %}Customer Segments | CreditSense AI{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <span class="eyebrow"><span class="dot"></span> Unsupervised Learning &middot; K-Means + PCA</span>
+  <h2>Customer Segmentation Dashboard</h2>
+  <p class="lead">K-Means was run directly on the scaled applicant feature matrix <strong>without ever seeing the Risk label</strong>, discovering natural borrower segments from income, CIBIL score, DTI, employment, and collateral patterns alone. Risk labels are shown only afterwards, to check how well each segment aligns with real outcomes.</p>
+</section>
+
+<div class="container">
+  <div class="grid-4" id="kpiRow">
+    <div class="kpi-card"><div class="kpi-label">Segments (k)</div><div class="kpi-value" id="kpiK">--</div></div>
+    <div class="kpi-card"><div class="kpi-label">Silhouette Score</div><div class="kpi-value" id="kpiSilhouette">--</div><div class="kpi-sub">Intrinsic separation, no labels used</div></div>
+    <div class="kpi-card"><div class="kpi-label">Applicants Analyzed</div><div class="kpi-value" id="kpiN">--</div></div>
+    <div class="kpi-card"><div class="kpi-label">PCA Variance Explained</div><div class="kpi-value" id="kpiVar">--</div><div class="kpi-sub">By the 2 plotted components</div></div>
+  </div>
+
+  <section class="panel" style="margin-top:24px;">
+    <div class="panel-header">
+      <div>
+        <h3>2D Projection of Applicant Segments (PCA)</h3>
+        <p id="scatterSubtitle">Each point is one applicant. Hover for details.</p>
+      </div>
+      <div class="model-select-row" style="margin:0;">
+        <button type="button" class="model-chip-btn active" id="colorBySegmentBtn">Color by Segment</button>
+        <button type="button" class="model-chip-btn" id="colorByRiskBtn">Color by True Risk</button>
+      </div>
+    </div>
+    <div id="scatterWrap" style="position:relative;">
+      <svg id="scatterSvg" viewBox="0 0 640 460" style="width:100%; height:auto; background:var(--surface-2); border-radius:var(--radius-md);"></svg>
+      <div id="scatterTooltip" class="scatter-tooltip"></div>
+    </div>
+    <div class="legend" id="scatterLegend" style="margin-top:14px;"></div>
+  </section>
+
+  <section class="panel" style="margin-top:24px;">
+    <div class="panel-header">
+      <div>
+        <h3>Discovered Segments</h3>
+        <p>Each segment's average financial profile and dominant risk outcome, plus a persona label derived from those characteristics.</p>
+      </div>
+    </div>
+    <div id="segmentCards" class="grid-2"></div>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .model-select-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .model-chip-btn{
+    font-size:0.76rem; font-weight:700; padding:7px 13px; border-radius:999px;
+    border:1.5px solid var(--border); background:var(--surface-2); color:var(--muted); cursor:pointer; transition:all var(--transition);
+  }
+  .model-chip-btn.active{ background:var(--blue); color:#fff; border-color:var(--blue); }
+  .scatter-point{ cursor:pointer; transition:r 120ms ease; }
+  .scatter-point:hover{ r:6; }
+  .scatter-tooltip{
+    position:absolute; pointer-events:none; background:var(--navy); color:#fff; font-size:0.75rem;
+    padding:8px 11px; border-radius:8px; max-width:240px; box-shadow:var(--shadow-md);
+    opacity:0; transition:opacity 120ms ease; z-index:10;
+  }
+  .scatter-tooltip.show{ opacity:1; }
+  .segment-card{ background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:16px 18px; }
+  .segment-card .sc-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; gap:8px; }
+  .segment-card .sc-title{ font-weight:700; font-size:0.92rem; color:var(--text); }
+  .segment-card .sc-persona{ font-size:0.78rem; color:var(--blue-dark); font-weight:600; margin-bottom:10px; }
+  .segment-card .sc-stats{ display:grid; grid-template-columns:1fr 1fr; gap:6px 12px; font-size:0.76rem; color:var(--muted); }
+  .segment-card .sc-stats b{ color:var(--text); }
+</style>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function(){
+  "use strict";
+  const SEGMENT_PALETTE = ['#2563EB','#0EA5A5','#7C3AED','#DB2777','#16A34A','#EA580C','#0891B2','#CA8A04'];
+  const RISK_COLORS = { 'Low Risk': '#15803D', 'High Risk': '#B91C1C' };
+
+  let segmentData = null;
+  let colorMode = 'segment';
+
+  fetch('/segments-data')
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if(data.error){ throw new Error(data.error); }
+      segmentData = data;
+      renderKpis(data);
+      renderScatter(data);
+      renderSegmentCards(data);
+    })
+    .catch(function(){
+      document.getElementById('scatterWrap').innerHTML = '<p class="empty-msg">Segmentation data unavailable. Run train_model.py first.</p>';
+    });
+
+  function renderKpis(data){
+    document.getElementById('kpiK').textContent = data.k;
+    document.getElementById('kpiSilhouette').textContent = data.silhouette_score;
+    document.getElementById('kpiN').textContent = data.n_applicants;
+    const varSum = (data.explained_variance_ratio_2d || []).reduce(function(a,b){ return a+b; }, 0);
+    document.getElementById('kpiVar').textContent = Math.round(varSum * 100) + '%';
+    document.getElementById('scatterSubtitle').textContent =
+      data.n_applicants + ' applicants total (showing ' + data.scatter.length + ' sampled points). Hover for details.';
+  }
+
+  function renderScatter(data){
+    const svg = document.getElementById('scatterSvg');
+    const tooltip = document.getElementById('scatterTooltip');
+    const points = data.scatter;
+
+    const xs = points.map(function(p){ return p.x; });
+    const ys = points.map(function(p){ return p.y; });
+    const xMin = Math.min.apply(null, xs), xMax = Math.max.apply(null, xs);
+    const yMin = Math.min.apply(null, ys), yMax = Math.max.apply(null, ys);
+    const pad = 30, w = 640, h = 460;
+
+    function scaleX(x){ return pad + (x - xMin) / (xMax - xMin || 1) * (w - 2*pad); }
+    function scaleY(y){ return h - pad - (y - yMin) / (yMax - yMin || 1) * (h - 2*pad); }
+
+    let svgContent = '';
+    points.forEach(function(p, i){
+      const color = colorMode === 'segment' ? SEGMENT_PALETTE[p.cluster % SEGMENT_PALETTE.length] : (RISK_COLORS[p.risk] || '#999');
+      svgContent += '<circle class="scatter-point" data-idx="' + i + '" cx="' + scaleX(p.x).toFixed(1) + '" cy="' + scaleY(p.y).toFixed(1) + '" r="4" fill="' + color + '" fill-opacity="0.75" stroke="' + color + '" stroke-width="1"></circle>';
+    });
+    svg.innerHTML = svgContent;
+
+    svg.querySelectorAll('.scatter-point').forEach(function(circle){
+      circle.addEventListener('mousemove', function(e){
+        const idx = parseInt(circle.getAttribute('data-idx'), 10);
+        const p = points[idx];
+        tooltip.innerHTML = '<b>' + (colorMode === 'segment' ? ('Segment ' + p.cluster) : p.risk) + '</b><br>' + p.label;
+        tooltip.style.left = (e.offsetX + 14) + 'px';
+        tooltip.style.top = (e.offsetY + 10) + 'px';
+        tooltip.classList.add('show');
+      });
+      circle.addEventListener('mouseleave', function(){ tooltip.classList.remove('show'); });
+    });
+
+    renderLegend();
+  }
+
+  function renderLegend(){
+    const legend = document.getElementById('scatterLegend');
+    if(colorMode === 'segment'){
+      legend.innerHTML = segmentData.clusters.map(function(c){
+        return '<span><span class="dot" style="background:' + SEGMENT_PALETTE[c.cluster_id % SEGMENT_PALETTE.length] + '"></span>Segment ' + c.cluster_id + ' (' + c.persona + ')</span>';
+      }).join('');
+    } else {
+      legend.innerHTML = '<span><span class="dot" style="background:#15803D"></span>Low Risk</span>' +
+        '<span><span class="dot" style="background:#B91C1C"></span>High Risk</span>';
+    }
+  }
+
+  document.getElementById('colorBySegmentBtn').addEventListener('click', function(){
+    colorMode = 'segment';
+    this.classList.add('active');
+    document.getElementById('colorByRiskBtn').classList.remove('active');
+    if(segmentData) renderScatter(segmentData);
+  });
+  document.getElementById('colorByRiskBtn').addEventListener('click', function(){
+    colorMode = 'risk';
+    this.classList.add('active');
+    document.getElementById('colorBySegmentBtn').classList.remove('active');
+    if(segmentData) renderScatter(segmentData);
+  });
+
+  function renderSegmentCards(data){
+    const wrap = document.getElementById('segmentCards');
+    wrap.innerHTML = data.clusters.map(function(c){
+      const color = SEGMENT_PALETTE[c.cluster_id % SEGMENT_PALETTE.length];
+      const riskColor = RISK_COLORS[c.dominant_risk] || '#999';
+      return '<div class="segment-card">' +
+        '<div class="sc-head"><span class="sc-title" style="color:' + color + '">Segment ' + c.cluster_id + '</span>' +
+        '<span class="badge info">' + c.size + ' applicants</span></div>' +
+        '<div class="sc-persona">' + c.persona + '</div>' +
+        '<div class="sc-stats">' +
+          '<span>Avg Income: <b>\u20b9' + Number(c.avg_annual_income).toLocaleString() + '</b></span>' +
+          '<span>Avg Loan: <b>\u20b9' + Number(c.avg_loan_amount).toLocaleString() + '</b></span>' +
+          '<span>Avg CIBIL: <b>' + c.avg_cibil_score + '</b></span>' +
+          '<span>Avg DTI: <b>' + c.avg_debt_to_income_ratio + '%</b></span>' +
+          '<span>Avg Age: <b>' + c.avg_age + '</b></span>' +
+          '<span>Collateral Rate: <b>' + c.collateral_rate_pct + '%</b></span>' +
+          '<span>Employment: <b>' + c.dominant_employment_status + '</b></span>' +
+          '<span>Dominant Risk: <b style="color:' + riskColor + '">' + c.dominant_risk + ' (' + Math.round(c.risk_purity*100) + '%)</b></span>' +
+        '</div></div>';
+    }).join('');
+  }
+})();
+</script>
+{% endblock %}

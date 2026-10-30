@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block title %}Analytics | CreditSense AI{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <span class="eyebrow"><span class="dot"></span> Live Usage Analytics</span>
+  <h2>Analytics Dashboard</h2>
+  <p class="lead">Aggregate stats across every assessment made through this server, logged to a local SQLite database.</p>
+</section>
+
+<div class="container">
+  <div class="grid-4" id="kpiRow">
+    <div class="kpi-card"><div class="kpi-label">Total Assessments</div><div class="kpi-value" id="kpiTotal">--</div></div>
+    <div class="kpi-card"><div class="kpi-label">Average Confidence</div><div class="kpi-value" id="kpiAvgConf">--</div></div>
+    <div class="kpi-card"><div class="kpi-label">Average CIBIL Score</div><div class="kpi-value" id="kpiAvgCibil">--</div></div>
+    <div class="kpi-card"><div class="kpi-label">High Risk Rate</div><div class="kpi-value" id="kpiHighRiskRate">--</div></div>
+  </div>
+
+  <div class="grid-2" style="margin-top:24px;">
+    <div class="panel">
+      <h3 style="margin-bottom:16px;">Risk Distribution</h3>
+      <div style="display:flex; align-items:center; gap:24px;">
+        <svg id="pieChart" viewBox="0 0 120 120" width="140" height="140"></svg>
+        <div class="legend" id="pieLegend" style="flex-direction:column; gap:8px;"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3 style="margin-bottom:16px;">Credit History of Applicants</h3>
+      <div id="creditHistBars"><p class="empty-msg">No data yet.</p></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:24px;">
+    <h3 style="margin-bottom:16px;">Assessments Over Last 14 Days</h3>
+    <div id="dailyBars"><p class="empty-msg">No data yet.</p></div>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--success)"></span> Low Risk</span>
+      <span><span class="dot" style="background:var(--danger)"></span> High Risk</span>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:24px;">
+    <h3 style="margin-bottom:16px;">Recent Assessments</h3>
+    <div id="recentTableWrap"><p class="empty-msg">No assessments logged yet. Run some assessments on the main page first.</p></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .bar-row{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .bar-row .b-label{ width:90px; font-size:0.78rem; color:var(--text); flex-shrink:0; }
+  .bar-row .b-track{ flex:1; height:10px; border-radius:999px; background:var(--surface-2); overflow:hidden; display:flex; }
+  .bar-row .b-fill-low{ background:var(--success); height:100%; }
+  .bar-row .b-fill-high{ background:var(--danger); height:100%; }
+  .bar-row .b-val{ width:40px; text-align:right; font-family:var(--font-mono); font-size:0.75rem; color:var(--muted); }
+</style>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function(){
+  "use strict";
+
+  fetch('/dashboard-data')
+    .then(function(res){ return res.json(); })
+    .then(renderDashboard)
+    .catch(function(){ document.getElementById('recentTableWrap').innerHTML = '<p class="empty-msg">Could not load dashboard data.</p>'; });
+
+  function renderDashboard(data){
+    document.getElementById('kpiTotal').textContent = data.total_predictions ?? 0;
+    document.getElementById('kpiAvgConf').textContent = data.average_confidence != null ? data.average_confidence + '%' : '--';
+    document.getElementById('kpiAvgCibil').textContent = data.average_cibil_score != null ? data.average_cibil_score : '--';
+
+    const dist = {};
+    (data.risk_distribution || []).forEach(function(r){ dist[r.risk] = r.c; });
+    const low = dist['Low Risk'] || 0;
+    const high = dist['High Risk'] || 0;
+    const total = low + high;
+    document.getElementById('kpiHighRiskRate').textContent = total ? Math.round(high / total * 100) + '%' : '--';
+
+    renderPie(low, high);
+    renderCreditHistBars(data.credit_history_distribution || []);
+    renderDailyBars(data.by_day || []);
+    renderRecentTable(data.recent || []);
+  }
+
+  function renderPie(low, high){
+    const total = low + high;
+    const svg = document.getElementById('pieChart');
+    const legend = document.getElementById('pieLegend');
+    if(total === 0){
+      svg.innerHTML = '<circle cx="60" cy="60" r="50" fill="none" stroke="#E2E8F5" stroke-width="16"/>';
+      legend.innerHTML = '<span>No data yet</span>';
+      return;
+    }
+    const lowPct = low / total;
+    const circumference = 2 * Math.PI * 50;
+    const lowLen = circumference * lowPct;
+    svg.innerHTML =
+      '<circle cx="60" cy="60" r="50" fill="none" stroke="#B91C1C" stroke-width="16"/>' +
+      '<circle cx="60" cy="60" r="50" fill="none" stroke="#15803D" stroke-width="16" ' +
+      'stroke-dasharray="' + lowLen + ' ' + circumference + '" transform="rotate(-90 60 60)"/>';
+    legend.innerHTML =
+      '<span><span class="dot" style="background:#15803D"></span> Low Risk: ' + low + ' (' + Math.round(lowPct*100) + '%)</span>' +
+      '<span><span class="dot" style="background:#B91C1C"></span> High Risk: ' + high + ' (' + Math.round((1-lowPct)*100) + '%)</span>';
+  }
+
+  function renderCreditHistBars(items){
+    const wrap = document.getElementById('creditHistBars');
+    if(!items.length){ wrap.innerHTML = '<p class="empty-msg">No data yet.</p>'; return; }
+    const max = Math.max.apply(null, items.map(function(i){ return i.c; }));
+    wrap.innerHTML = items.map(function(item){
+      const pct = max ? (item.c / max * 100) : 0;
+      return '<div class="bar-row"><span class="b-label">' + item.credit_history + '</span>' +
+        '<div class="b-track"><div class="b-fill-low" style="width:' + pct + '%"></div></div>' +
+        '<span class="b-val">' + item.c + '</span></div>';
+    }).join('');
+  }
+
+  function renderDailyBars(items){
+    const wrap = document.getElementById('dailyBars');
+    if(!items.length){ wrap.innerHTML = '<p class="empty-msg">No data yet.</p>'; return; }
+    const max = Math.max.apply(null, items.map(function(i){ return (i.low||0) + (i.high||0); })) || 1;
+    wrap.innerHTML = items.map(function(item){
+      const lowPct = (item.low||0) / max * 100;
+      const highPct = (item.high||0) / max * 100;
+      return '<div class="bar-row"><span class="b-label">' + item.day + '</span>' +
+        '<div class="b-track"><div class="b-fill-low" style="width:' + lowPct + '%"></div>' +
+        '<div class="b-fill-high" style="width:' + highPct + '%"></div></div>' +
+        '<span class="b-val">' + ((item.low||0)+(item.high||0)) + '</span></div>';
+    }).join('');
+  }
+
+  function renderRecentTable(rows){
+    const wrap = document.getElementById('recentTableWrap');
+    if(!rows.length){ wrap.innerHTML = '<p class="empty-msg">No assessments logged yet. Run some assessments on the main page first.</p>'; return; }
+    let html = '<div class="table-wrap"><table class="data-table"><thead><tr><th>Time</th><th>Applicant</th><th>Risk</th><th>Confidence</th><th>CIBIL</th><th>Source</th></tr></thead><tbody>';
+    rows.forEach(function(r){
+      const isLow = r.risk === 'Low Risk';
+      html += '<tr><td>' + new Date(r.created_at).toLocaleString() + '</td><td>' + (r.applicant_name || '—') + '</td>' +
+        '<td><span class="badge ' + (isLow?'low':'high') + '">' + r.risk + '</span></td>' +
+        '<td>' + r.probability + '%</td><td>' + (r.cibil_score != null ? r.cibil_score : '—') + '</td><td>' + r.source + '</td></tr>';
+    });
+    html += '</tbody></table></div>';
+    wrap.innerHTML = html;
+  }
+})();
+</script>
+{% endblock %}

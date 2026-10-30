@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% block title %}Batch Scoring | CreditSense AI{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <span class="eyebrow"><span class="dot"></span> Bulk Risk Scoring</span>
+  <h2>Score many applicants at once.</h2>
+  <p class="lead">Upload a CSV with applicant details (including CIBIL score and banking fields) and get a risk verdict for every row in one request (up to 500 rows per batch).</p>
+</section>
+
+<div class="container">
+  <section class="panel" aria-labelledby="batchTitle">
+    <div class="panel-header">
+      <div>
+        <h3 id="batchTitle">Upload CSV</h3>
+        <p>Drag a file in or click to browse.</p>
+      </div>
+      <button type="button" class="btn btn-ghost btn-sm" id="batchSampleBtn">Download Template</button>
+    </div>
+
+    <div class="batch-drop" id="batchDrop">
+      <input type="file" id="batchFileInput" accept=".csv" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3V15M12 15L8 11M12 15L16 11M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><strong>Click to upload</strong> or drag a CSV file here</p>
+      <span class="batch-file-name" id="batchFileName"></span>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-primary" id="batchScoreBtn" disabled>
+        <span class="spinner"></span>
+        <span class="btn-label">Score CSV</span>
+      </button>
+    </div>
+
+    <div id="batchResultsWrap"></div>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .batch-drop{
+    border:1.5px dashed var(--border); border-radius:var(--radius-md); padding:36px 16px; text-align:center; cursor:pointer;
+    background:var(--surface-2); color:var(--muted); transition:border-color var(--transition), background var(--transition);
+  }
+  .batch-drop:hover, .batch-drop.dragover{ border-color:var(--blue); background:var(--blue-light); }
+  .batch-drop svg{ width:30px; height:30px; margin-bottom:10px; }
+  .batch-drop p{ font-size:0.9rem; }
+  .batch-drop strong{ color:var(--blue-dark); }
+  .batch-file-name{ display:block; margin-top:8px; font-size:0.8rem; font-family:var(--font-mono); color:var(--text); }
+  #batchResultsWrap{ margin-top:20px; }
+  .batch-summary{ display:flex; gap:20px; margin-bottom:16px; flex-wrap:wrap; }
+  .batch-summary .bs-item{ font-size:0.85rem; color:var(--muted); }
+  .batch-summary .bs-item b{ color:var(--navy); font-family:var(--font-mono); }
+  [data-theme="dark"] .batch-summary .bs-item b{ color:#fff; }
+</style>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function(){
+  "use strict";
+  const showToast = window.CS.showToast;
+
+  const batchDrop = document.getElementById('batchDrop');
+  const batchFileInput = document.getElementById('batchFileInput');
+  const batchFileName = document.getElementById('batchFileName');
+  const batchScoreBtn = document.getElementById('batchScoreBtn');
+  const batchResultsWrap = document.getElementById('batchResultsWrap');
+  let selectedFile = null;
+
+  batchDrop.addEventListener('click', function(){ batchFileInput.click(); });
+  batchDrop.addEventListener('dragover', function(e){ e.preventDefault(); batchDrop.classList.add('dragover'); });
+  batchDrop.addEventListener('dragleave', function(){ batchDrop.classList.remove('dragover'); });
+  batchDrop.addEventListener('drop', function(e){
+    e.preventDefault();
+    batchDrop.classList.remove('dragover');
+    if(e.dataTransfer.files.length) setFile(e.dataTransfer.files[0]);
+  });
+  batchFileInput.addEventListener('change', function(){
+    if(batchFileInput.files.length) setFile(batchFileInput.files[0]);
+  });
+
+  function setFile(file){
+    if(!file.name.toLowerCase().endsWith('.csv')){ showToast('Please select a .csv file.', true); return; }
+    selectedFile = file;
+    batchFileName.textContent = file.name;
+    batchScoreBtn.disabled = false;
+  }
+
+  document.getElementById('batchSampleBtn').addEventListener('click', function(){
+    window.location.href = '/batch-predict/sample';
+  });
+
+  batchScoreBtn.addEventListener('click', function(){
+    if(!selectedFile){ showToast('Choose a CSV file first.', true); return; }
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    batchScoreBtn.classList.add('loading');
+    batchScoreBtn.disabled = true;
+
+    fetch('/batch-predict', { method: 'POST', body: formData })
+      .then(function(res){ return res.json().then(function(body){ return { ok: res.ok, body: body }; }); })
+      .then(function(result){
+        batchScoreBtn.classList.remove('loading');
+        batchScoreBtn.disabled = false;
+        if(!result.ok){ showToast(result.body.error || 'Batch scoring failed.', true); return; }
+        renderResults(result.body);
+        showToast('Scored ' + result.body.successful + ' of ' + result.body.total_rows + ' applicants.');
+      })
+      .catch(function(){
+        batchScoreBtn.classList.remove('loading');
+        batchScoreBtn.disabled = false;
+        showToast('Unable to reach the server.', true);
+      });
+  });
+
+  function renderResults(data){
+    let html = '<div class="batch-summary">' +
+      '<span class="bs-item">Total: <b>' + data.total_rows + '</b></span>' +
+      '<span class="bs-item">Successful: <b>' + data.successful + '</b></span>' +
+      '<span class="bs-item">Failed: <b>' + data.failed + '</b></span>' +
+      '</div>';
+
+    html += '<div class="table-wrap"><table class="data-table"><thead><tr>' +
+      '<th>#</th><th>Applicant</th><th>CIBIL</th><th>Result</th><th>Confidence</th></tr></thead><tbody>';
+
+    data.results.forEach(function(r){
+      if(r.error){
+        html += '<tr><td>' + r.row + '</td><td>' + r.applicant_name + '</td>' +
+          '<td colspan="3"><span class="badge danger">' + r.error + '</span></td></tr>';
+      } else {
+        const isLow = r.risk === 'Low Risk';
+        html += '<tr><td>' + r.row + '</td><td>' + r.applicant_name + '</td>' +
+          '<td>' + (r.cibil_score != null ? r.cibil_score : '--') + '</td>' +
+          '<td><span class="badge ' + (isLow ? 'low' : 'high') + '">' + r.risk + '</span></td>' +
+          '<td>' + r.probability + '%</td></tr>';
+      }
+    });
+    html += '</tbody></table></div>';
+
+    html += '<div class="form-actions" style="margin-top:14px;"><button type="button" class="btn btn-ghost btn-sm" id="downloadBatchCsvBtn">&#8681; Download Results CSV</button></div>';
+
+    batchResultsWrap.innerHTML = html;
+    document.getElementById('downloadBatchCsvBtn').addEventListener('click', function(){ downloadCsv(data.results); });
+  }
+
+  function downloadCsv(results){
+    const rows = [['row', 'applicant_name', 'cibil_score', 'risk', 'probability', 'message', 'error']];
+    results.forEach(function(r){
+      rows.push([r.row, r.applicant_name, r.cibil_score != null ? r.cibil_score : '', r.risk || '', r.probability != null ? r.probability : '', r.message || '', r.error || '']);
+    });
+    const csvContent = rows.map(function(row){
+      return row.map(function(cell){
+        const s = String(cell).replace(/"/g, '""');
+        return /[",\n]/.test(s) ? '"' + s + '"' : s;
+      }).join(',');
+    }).join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'creditsense_batch_results.csv';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+})();
+</script>
+{% endblock %}

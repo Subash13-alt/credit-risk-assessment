@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block title %}Model Performance | CreditSense AI{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <span class="eyebrow"><span class="dot"></span> Supervised Learning</span>
+  <h2>Model Performance Dashboard</h2>
+  <p class="lead">Compare all 3 trained classifiers side by side: Logistic Regression, Decision Tree, and Random Forest — each evaluated on the same held-out test split.</p>
+</section>
+
+<div class="container">
+  <div class="two-col">
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h3>Metrics</h3>
+          <p>Click a model to view its details.</p>
+        </div>
+      </div>
+      <div class="model-select-row" id="modelSelectRow"></div>
+      <div id="metricsContent"><p class="empty-msg">Loading evaluation metrics&hellip;</p></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h3>Confusion Matrix</h3>
+          <p>Rows = actual risk, columns = predicted risk.</p>
+        </div>
+      </div>
+      <div id="confusionMatrixWrap"><p class="empty-msg">Select a model to see its confusion matrix.</p></div>
+    </section>
+  </div>
+
+  <section class="panel" style="margin-top:24px;">
+    <div class="panel-header">
+      <div>
+        <h3>All Models, All Metrics</h3>
+        <p>Side-by-side comparison table.</p>
+      </div>
+    </div>
+    <div id="comparisonTableWrap"><p class="empty-msg">Loading&hellip;</p></div>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .model-select-row{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+  .model-chip-btn{
+    font-size:0.78rem; font-weight:700; padding:8px 14px; border-radius:999px;
+    border:1.5px solid var(--border); background:var(--surface-2); color:var(--muted); cursor:pointer; transition:all var(--transition);
+  }
+  .model-chip-btn.active{ background:var(--blue); color:#fff; border-color:var(--blue); }
+  .best-model-chip{
+    display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
+    background:var(--blue-light); color:var(--blue-dark); font-size:0.78rem; font-weight:700; padding:6px 12px; border-radius:999px;
+  }
+  .cm-grid{ display:grid; grid-template-columns:auto repeat(2, 1fr); gap:4px; margin-top:8px; font-size:0.76rem; }
+  .cm-grid .cm-head{ font-weight:700; color:var(--muted); text-align:center; padding:6px 4px; }
+  .cm-grid .cm-side{ font-weight:700; color:var(--muted); display:flex; align-items:center; padding:0 6px; }
+  .cm-grid .cm-cell{ padding:16px 6px; text-align:center; border-radius:8px; font-family:var(--font-mono); font-weight:700; background:var(--surface-2); border:1px solid var(--border); }
+  .cm-grid .cm-cell.correct{ background:var(--success-bg); color:var(--success); }
+  .cm-grid .cm-cell.wrong{ background:var(--danger-bg); color:var(--danger); }
+</style>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function(){
+  "use strict";
+
+  fetch('/metrics')
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if(data.error){ throw new Error(data.error); }
+      renderAll(data);
+    })
+    .catch(function(){
+      document.getElementById('metricsContent').innerHTML = '<p class="empty-msg">Model metrics unavailable. Run train_model.py first.</p>';
+      document.getElementById('comparisonTableWrap').innerHTML = '';
+    });
+
+  function renderAll(data){
+    const modelNames = Object.keys(data.results);
+
+    document.getElementById('modelSelectRow').innerHTML = modelNames.map(function(m){
+      return '<button type="button" class="model-chip-btn' + (m === data.best_model ? ' active' : '') + '" data-model="' + m.replace(/"/g,'&quot;') + '">' + m + '</button>';
+    }).join('');
+
+    document.querySelectorAll('.model-chip-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.model-chip-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        renderModel(data, btn.getAttribute('data-model'));
+      });
+    });
+
+    renderModel(data, data.best_model);
+    renderComparisonTable(data);
+  }
+
+  function renderModel(data, name){
+    const stats = data.results[name];
+    let html = '<div class="best-model-chip">' + (name === data.best_model ? 'Winner: ' : 'Viewing: ') + name + '</div>';
+    html += metricBar('Accuracy', stats.accuracy);
+    html += metricBar('Precision', stats.precision);
+    html += metricBar('Recall', stats.recall);
+    html += metricBar('F1 Score', stats.f1_score);
+    document.getElementById('metricsContent').innerHTML = html;
+
+    requestAnimationFrame(function(){
+      document.querySelectorAll('.m-bar-fill').forEach(function(bar){ bar.style.width = bar.getAttribute('data-target') + '%'; });
+    });
+
+    renderConfusionMatrix(stats.confusion_matrix);
+  }
+
+  function metricBar(label, value){
+    return '<div class="metric-row"><span class="m-label">' + label + '</span>' +
+      '<div class="m-bar-track"><div class="m-bar-fill" data-target="' + value + '"></div></div>' +
+      '<span class="m-val">' + value + '%</span></div>';
+  }
+
+  function renderConfusionMatrix(cm){
+    const wrap = document.getElementById('confusionMatrixWrap');
+    if(!cm || cm.length !== 2){ wrap.innerHTML = '<p class="empty-msg">Confusion matrix unavailable.</p>'; return; }
+
+    wrap.innerHTML = '<div class="cm-grid">' +
+      '<div></div><div class="cm-head">Pred: Low</div><div class="cm-head">Pred: High</div>' +
+      '<div class="cm-side">Actual: Low</div><div class="cm-cell correct">' + cm[0][0] + '</div><div class="cm-cell wrong">' + cm[0][1] + '</div>' +
+      '<div class="cm-side">Actual: High</div><div class="cm-cell wrong">' + cm[1][0] + '</div><div class="cm-cell correct">' + cm[1][1] + '</div>' +
+      '</div>';
+  }
+
+  function renderComparisonTable(data){
+    const modelNames = Object.keys(data.results);
+    let html = '<div class="table-wrap"><table class="data-table"><thead><tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1 Score</th></tr></thead><tbody>';
+    modelNames.forEach(function(name){
+      const s = data.results[name];
+      const isBest = name === data.best_model;
+      html += '<tr' + (isBest ? ' style="background:var(--blue-light);"' : '') + '>' +
+        '<td>' + (isBest ? '&#11088; ' : '') + name + '</td>' +
+        '<td>' + s.accuracy + '%</td><td>' + s.precision + '%</td><td>' + s.recall + '%</td><td>' + s.f1_score + '%</td></tr>';
+    });
+    html += '</tbody></table></div>';
+    document.getElementById('comparisonTableWrap').innerHTML = html;
+  }
+})();
+</script>
+{% endblock %}

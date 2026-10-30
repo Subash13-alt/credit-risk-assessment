@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %}API Docs | CreditSense AI{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <span class="eyebrow"><span class="dot"></span> Developer Reference</span>
+  <h2>REST API Documentation</h2>
+  <p class="lead">All endpoints are served from this app's base URL. Responses are JSON unless noted. No authentication is required for this academic demo.</p>
+</section>
+
+<div class="container">
+  <div class="form-actions" style="margin-bottom:28px;">
+    <a class="btn btn-primary" href="/postman-collection.json" download>&#8681; Download Postman Collection</a>
+    <a class="btn btn-ghost" href="/batch-predict/sample" download>&#8681; Download Sample Batch CSV</a>
+  </div>
+
+  <section class="panel">
+    <div class="endpoint-head"><span class="method post">POST</span><span class="path">/predict</span></div>
+    <p class="desc">Scores a single applicant and returns a risk verdict, confidence score, CIBIL score, recommendation, ranked explanation, and a computed loan offer (interest rate, EMI, totals).</p>
+    <div class="section-label">Request body (JSON)</div>
+    <pre>{
+  "applicant_name": "Priya Sharma", "age": 32, "gender": "Female",
+  "employment_status": "Salaried", "annual_income": 650000, "co_applicant_income": 0,
+  "loan_amount": 150000, "loan_duration": 36, "credit_history": "Good",
+  "existing_loans": 1, "debt_to_income_ratio": 22, "loan_purpose": "Home",
+  "cibil_score": 780, "pan_verified": "Yes", "collateral_provided": "Yes",
+  "bank_relationship_years": 4, "residential_status": "Owned"
+}</pre>
+    <div class="section-label">Response</div>
+    <pre>{
+  "risk": "Low Risk",
+  "probability": 93.47,
+  "message": "Eligible for Loan Approval",
+  "applicant_name": "Priya Sharma",
+  "cibil_score": 780,
+  "loan_offer": {
+    "eligible": true, "interest_rate_pct": 9.0, "monthly_emi": 4769.96,
+    "total_interest": 21718.56, "total_payable": 171718.56
+  },
+  "explanation": [
+    {"feature": "Annual Income", "impact": 14.665, "direction": "supports"},
+    {"feature": "CIBIL Score", "impact": 1.102, "direction": "supports"}
+  ]
+}</pre>
+    <div class="section-label">cURL</div>
+    <pre>curl -X POST https://YOUR_HOST/predict \
+  -H "Content-Type: application/json" \
+  -d '{"applicant_name":"Priya Sharma","age":32,"cibil_score":780,"...":"..."}'</pre>
+  </section>
+
+  <section class="panel">
+    <div class="endpoint-head"><span class="method get">GET</span><span class="path">/sample-applicant</span></div>
+    <p class="desc">Returns one random real applicant row from the training dataset, formatted to match the <code class="inline">/predict</code> request shape — powers the "Load Sample Applicant" button on the Assessment page.</p>
+  </section>
+
+  <section class="panel">
+    <div class="endpoint-head"><span class="method post">POST</span><span class="path">/batch-predict</span></div>
+    <p class="desc">Upload a CSV of applicants (<code class="inline">multipart/form-data</code>, field name <code class="inline">file</code>) and receive a prediction for every row. Max 500 rows per request. Required columns include the new banking fields (<code class="inline">cibil_score</code>, <code class="inline">pan_verified</code>, <code class="inline">collateral_provided</code>, <code class="inline">co_applicant_income</code>, <code class="inline">bank_relationship_years</code>, <code class="inline">residential_status</code>) alongside the original fields.</p>
+    <div class="section-label">cURL</div>
+    <pre>curl -X POST https://YOUR_HOST/batch-predict -F "file=@applicants.csv"</pre>
+  </section>
+
+  <section class="panel">
+    <div class="endpoint-head"><span class="method get">GET</span><span class="path">/batch-predict/sample</span></div>
+    <p class="desc">Downloads a sample CSV template with the exact columns expected by <code class="inline">/batch-predict</code>.</p>
+  </section>
+
+  <section class="panel">
+    <div class="endpoint-head"><span class="method post">POST</span><span class="path">/export-pdf</span></div>
+    <p class="desc">Generates a downloadable PDF report for one prediction, including the CIBIL score and top contributing factors.</p>
+  </section>
+
+  <section class="panel">
+    <div class="endpoint-head"><span class="method get">GET</span><span class="path">/metrics</span></div>
+    <p class="desc">Returns saved evaluation metrics for all 3 trained supervised models. Powers the <a href="/dashboard/models">Model Performance</a> dashboard.</p>
+  </section>
+
+  <section class="panel">
+    <div class="endpoint-head"><span class="method get">GET</span><span class="path">/dashboard-data</span></div>
+    <p class="desc">Returns aggregate analytics across every prediction logged by this server. Powers the <a href="/dashboard">Analytics</a> dashboard.</p>
+  </section>
+
+  <section class="panel">
+    <div class="endpoint-head"><span class="method get">GET</span><span class="path">/segments-data</span></div>
+    <p class="desc">Returns the K-Means customer segmentation report: per-segment financial profile, persona label, PCA 2D coordinates, and Silhouette Score. Powers the <a href="/dashboard/segments">Segments</a> dashboard.</p>
+  </section>
+
+  <section class="panel">
+    <div class="endpoint-head"><span class="method get">GET</span><span class="path">/anomalies-data</span></div>
+    <p class="desc">Returns the Isolation Forest anomaly detection report: flagged applicants, anomaly scores, and High Risk rate comparison. Powers the <a href="/dashboard/anomalies">Anomalies</a> dashboard.</p>
+  </section>
+
+  <section class="panel">
+    <div class="endpoint-head"><span class="method get">GET</span><span class="path">/postman-collection.json</span></div>
+    <p class="desc">Downloads a ready-to-import Postman collection covering every endpoint above.</p>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .endpoint-head{ display:flex; align-items:center; gap:12px; margin-bottom:6px; flex-wrap:wrap; }
+  .method{ font-family:var(--font-mono); font-weight:700; font-size:0.76rem; padding:4px 10px; border-radius:6px; }
+  .method.get{ background:var(--success-bg); color:var(--success); }
+  .method.post{ background:var(--blue-light); color:var(--blue-dark); }
+  .path{ font-family:var(--font-mono); font-size:0.92rem; font-weight:700; color:var(--navy); }
+  [data-theme="dark"] .path{ color:#fff; }
+  .desc{ color:var(--muted); font-size:0.88rem; margin:10px 0 12px; }
+  pre{
+    background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm);
+    padding:14px 16px; overflow-x:auto; font-family:var(--font-mono); font-size:0.78rem; line-height:1.6; margin:8px 0;
+  }
+  .section-label{ font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin:14px 0 6px; }
+  code.inline{ background:var(--surface-2); padding:2px 6px; border-radius:5px; font-family:var(--font-mono); font-size:0.85em; }
+</style>
+{% endblock %}

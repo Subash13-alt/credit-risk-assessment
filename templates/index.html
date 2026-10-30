@@ -1,493 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CreditSense AI | Intelligent Credit Risk Assessment</title>
-<meta name="description" content="CreditSense AI predicts loan applicant credit risk using Machine Learning.">
-<style>
-  /* ============================================================
-     DESIGN TOKENS
-     ============================================================ */
-  :root{
-    --bg:            #F4F7FB;
-    --surface:       #FFFFFF;
-    --surface-2:     #EEF3FB;
-    --navy:          #0B1F3A;
-    --navy-soft:     #16294A;
-    --blue:          #2563EB;
-    --blue-dark:     #1D4ED8;
-    --blue-light:    #DCE8FF;
-    --success:       #15803D;
-    --success-bg:    #E7F6EC;
-    --danger:        #B91C1C;
-    --danger-bg:     #FDECEC;
-    --warning:       #B45309;
-    --warning-bg:    #FDF3E3;
-    --text:          #14213D;
-    --muted:         #5B6B8C;
-    --border:        #E2E8F5;
-    --shadow-sm:      0 1px 2px rgba(11,31,58,0.06), 0 1px 1px rgba(11,31,58,0.04);
-    --shadow-md:      0 8px 24px rgba(11,31,58,0.08);
-    --shadow-lg:      0 20px 45px rgba(11,31,58,0.14);
-    --radius-sm:     10px;
-    --radius-md:     16px;
-    --radius-lg:     22px;
-    --font-display:  "Sora", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-    --font-body:     "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-    --font-mono:     ui-monospace, SFMono-Regular, "Roboto Mono", Menlo, Consolas, monospace;
-    --transition:    180ms cubic-bezier(.4,0,.2,1);
-  }
+{% extends "base.html" %}
+{% block title %}Assessment | CreditSense AI{% endblock %}
 
-  [data-theme="dark"]{
-    --bg:            #0A1526;
-    --surface:       #101E36;
-    --surface-2:     #0D1930;
-    --navy:          #050C18;
-    --navy-soft:     #0F1D36;
-    --blue:          #4C86F9;
-    --blue-dark:     #3B6FE0;
-    --blue-light:    #17264A;
-    --success:       #4ADE80;
-    --success-bg:    #0F2A1C;
-    --danger:        #F87171;
-    --danger-bg:     #2E1414;
-    --warning:       #FBBF24;
-    --warning-bg:    #2E2410;
-    --text:          #E7ECF7;
-    --muted:         #93A2C4;
-    --border:        #1F2E4D;
-    --shadow-sm:      0 1px 2px rgba(0,0,0,0.35);
-    --shadow-md:      0 8px 24px rgba(0,0,0,0.35);
-    --shadow-lg:      0 20px 45px rgba(0,0,0,0.5);
-  }
+{% block content %}
+<section class="page-hero">
+  <span class="eyebrow"><span class="dot"></span> Machine Learning &middot; CIBIL-Aware Risk Scoring</span>
+  <h2>Know a borrower's risk <em>before</em> you approve the loan.</h2>
+  <p class="lead">CreditSense AI scores loan applicants in real time using a trained classifier informed by CIBIL score, KYC verification, collateral, and income signals, turning a full banking application into a clear Low Risk / High Risk verdict.</p>
+</section>
 
-  /* Fallback local font stacks -- no external font/CSS files are loaded,
-     so we lean on high-quality system fonts that echo Sora/Inter shapes. */
-
-  *,*::before,*::after{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--font-body);
-    line-height:1.5;
-    transition:background var(--transition), color var(--transition);
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,h4{ font-family:var(--font-display); margin:0; letter-spacing:-0.01em; }
-  p{ margin:0; }
-  button{ font-family:inherit; }
-  a{ color:var(--blue); }
-  ::selection{ background:var(--blue-light); }
-
-  .skip-link{
-    position:absolute; left:-999px; top:auto;
-  }
-  .skip-link:focus{
-    left:12px; top:12px; z-index:999; background:var(--navy); color:#fff;
-    padding:10px 16px; border-radius:8px;
-  }
-
-  /* ============================================================
-     HEADER
-     ============================================================ */
-  .site-header{
-    position:sticky; top:0; z-index:50;
-    background:var(--navy);
-    color:#fff;
-    box-shadow:var(--shadow-md);
-  }
-  .header-inner{
-    max-width:1240px; margin:0 auto; padding:16px 28px;
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
-  }
-  .brand{ display:flex; align-items:center; gap:12px; }
-  .brand-mark{
-    width:40px; height:40px; border-radius:11px;
-    background:linear-gradient(135deg, var(--blue) 0%, #6EA0FF 100%);
-    display:flex; align-items:center; justify-content:center;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
-    flex-shrink:0;
-  }
-  .brand-mark svg{ width:22px; height:22px; }
-  .brand-text h1{ font-size:1.15rem; color:#fff; font-weight:700; }
-  .brand-text span{ display:block; font-size:0.72rem; color:#A9BEE8; letter-spacing:0.06em; text-transform:uppercase; margin-top:2px;}
-
-  .header-actions{ display:flex; align-items:center; gap:10px; }
-  .theme-toggle{
-    display:flex; align-items:center; gap:8px;
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.14);
-    color:#fff; border-radius:999px; padding:8px 14px;
-    cursor:pointer; font-size:0.82rem; font-weight:600;
-    transition:background var(--transition);
-  }
-  .theme-toggle:hover{ background:rgba(255,255,255,0.16); }
-  .theme-toggle svg{ width:16px; height:16px; }
-
-  /* ============================================================
-     HERO
-     ============================================================ */
-  .hero{
-    max-width:1240px; margin:0 auto; padding:52px 28px 20px;
-    display:grid; grid-template-columns: 1.15fr 0.85fr; gap:40px; align-items:center;
-  }
-  .hero-eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--blue-light); color:var(--blue-dark);
-    font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
-    padding:6px 12px; border-radius:999px; margin-bottom:16px;
-  }
-  .hero-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--blue-dark); }
-  .hero h2{
-    font-size:2.5rem; font-weight:800; color:var(--navy); line-height:1.08; letter-spacing:-0.02em;
-  }
-  [data-theme="dark"] .hero h2{ color:#F3F6FD; }
-  .hero h2 em{
-    font-style:normal;
-    background:linear-gradient(90deg, var(--blue), #6EA0FF);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
-  .hero p.lead{
-    margin-top:16px; font-size:1.02rem; color:var(--muted); max-width:52ch;
-  }
-  .hero-stats{ display:flex; gap:28px; margin-top:28px; flex-wrap:wrap; }
-  .hero-stat b{ font-family:var(--font-mono); font-size:1.4rem; color:var(--navy); display:block; }
-  [data-theme="dark"] .hero-stat b{ color:#fff; }
-  .hero-stat span{ font-size:0.78rem; color:var(--muted); }
-
-  .hero-visual{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius-lg);
-    box-shadow:var(--shadow-lg);
-    padding:22px;
-  }
-  .mini-gauge-label{ font-size:0.78rem; color:var(--muted); font-weight:600; margin-bottom:6px; }
-
-  /* ============================================================
-     LAYOUT
-     ============================================================ */
-  .layout{
-    max-width:1240px; margin:0 auto; padding:20px 28px 80px;
-    display:grid; grid-template-columns: 1.35fr 1fr; gap:28px; align-items:start;
-  }
-
-  .panel{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius-lg);
-    box-shadow:var(--shadow-md);
-    padding:28px;
-  }
-  .panel + .panel{ margin-top:24px; }
-  .panel-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; gap:12px; flex-wrap:wrap;}
-  .panel-header h3{ font-size:1.15rem; color:var(--navy); }
-  [data-theme="dark"] .panel-header h3{ color:#F3F6FD; }
-  .panel-header p{ font-size:0.85rem; color:var(--muted); margin-top:4px; }
-
-  /* ============================================================
-     FORM
-     ============================================================ */
-  .form-section-title{
-    font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
-    color:var(--blue-dark); margin:22px 0 12px;
-  }
-  .form-section-title:first-of-type{ margin-top:0; }
-
-  .field-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; }
-  .field{ position:relative; display:flex; flex-direction:column; gap:6px; }
-  .field.full{ grid-column:1 / -1; }
-  .field label{
-    font-size:0.82rem; font-weight:600; color:var(--text);
-    display:flex; align-items:center; gap:6px;
-  }
-  .tooltip-icon{
-    width:15px; height:15px; border-radius:50%; background:var(--surface-2);
-    color:var(--muted); font-size:0.66rem; font-weight:700;
-    display:inline-flex; align-items:center; justify-content:center;
-    cursor:help; position:relative; border:1px solid var(--border);
-  }
-  .tooltip-icon .tooltip-bubble{
-    position:absolute; bottom:135%; left:50%; transform:translateX(-50%) translateY(4px);
-    background:var(--navy); color:#fff; font-size:0.72rem; font-weight:500;
-    padding:8px 11px; border-radius:8px; width:200px; line-height:1.35;
-    box-shadow:var(--shadow-md);
-    opacity:0; pointer-events:none; transition:opacity var(--transition), transform var(--transition);
-    z-index:30;
-  }
-  .tooltip-icon .tooltip-bubble::after{
-    content:""; position:absolute; top:100%; left:50%; transform:translateX(-50%);
-    border:6px solid transparent; border-top-color:var(--navy);
-  }
-  .tooltip-icon:hover .tooltip-bubble, .tooltip-icon:focus .tooltip-bubble{
-    opacity:1; transform:translateX(-50%) translateY(0);
-  }
-
-  .field input, .field select{
-    font-family:var(--font-body);
-    font-size:0.92rem;
-    padding:11px 13px;
-    border-radius:var(--radius-sm);
-    border:1.5px solid var(--border);
-    background:var(--surface);
-    color:var(--text);
-    outline:none;
-    transition:border-color var(--transition), box-shadow var(--transition);
-  }
-  .field input::placeholder{ color:#A6B2CC; }
-  .field input:focus, .field select:focus{
-    border-color:var(--blue);
-    box-shadow:0 0 0 4px var(--blue-light);
-  }
-  .field input:invalid:not(:placeholder-shown){
-    border-color:var(--danger);
-  }
-  .field .error-msg{
-    font-size:0.74rem; color:var(--danger); min-height:14px; display:none;
-  }
-  .field.has-error .error-msg{ display:block; }
-  .field.has-error input, .field.has-error select{ border-color:var(--danger); }
-
-  .form-actions{ display:flex; gap:12px; margin-top:26px; }
-  .btn{
-    border:none; cursor:pointer; border-radius:var(--radius-sm);
-    font-weight:700; font-size:0.92rem; padding:13px 22px;
-    display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    transition:transform var(--transition), box-shadow var(--transition), background var(--transition);
-  }
-  .btn-primary{
-    background:linear-gradient(135deg, var(--blue), var(--blue-dark));
-    color:#fff; flex:1;
-    box-shadow:0 10px 24px rgba(37,99,235,0.28);
-  }
-  .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 14px 28px rgba(37,99,235,0.34); }
-  .btn-primary:active{ transform:translateY(0); }
-  .btn-primary:disabled{ opacity:0.7; cursor:not-allowed; transform:none; }
-  .btn-ghost{
-    background:var(--surface-2); color:var(--navy);
-    border:1.5px solid var(--border);
-  }
-  [data-theme="dark"] .btn-ghost{ color:#F3F6FD; }
-  .btn-ghost:hover{ background:var(--blue-light); }
-
-  .spinner{
-    width:16px; height:16px; border-radius:50%;
-    border:2.5px solid rgba(255,255,255,0.4); border-top-color:#fff;
-    animation:spin 0.7s linear infinite; display:none;
-  }
-  .btn-primary.loading .spinner{ display:inline-block; }
-  .btn-primary.loading .btn-label{ display:none; }
-  @keyframes spin{ to{ transform:rotate(360deg); } }
-
-  /* ============================================================
-     RESULT CARD / GAUGE (signature element)
-     ============================================================ */
-  .result-card{ text-align:center; }
-  .result-empty{
-    display:flex; flex-direction:column; align-items:center; gap:10px;
-    padding:34px 10px; color:var(--muted);
-  }
-  .result-empty svg{ width:52px; height:52px; opacity:0.5; }
-  .result-empty p{ font-size:0.88rem; max-width:26ch; }
-
-  .gauge-wrap{ position:relative; width:220px; height:130px; margin:6px auto 4px; }
-  .gauge-wrap svg{ width:100%; height:100%; overflow:visible; }
-  .gauge-track{ fill:none; stroke:var(--surface-2); stroke-width:16; stroke-linecap:round; }
-  .gauge-fill{
-    fill:none; stroke-width:16; stroke-linecap:round;
-    stroke-dasharray:251.2; stroke-dashoffset:251.2;
-    transition:stroke-dashoffset 900ms cubic-bezier(.4,0,.2,1), stroke 400ms ease;
-  }
-  .gauge-needle-value{
-    position:absolute; bottom:6px; left:0; right:0; text-align:center;
-  }
-  .gauge-needle-value .num{ font-family:var(--font-mono); font-size:2.1rem; font-weight:700; color:var(--navy); }
-  [data-theme="dark"] .gauge-needle-value .num{ color:#fff; }
-  .gauge-needle-value .lbl{ font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; }
-
-  .risk-badge{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:9px 18px; border-radius:999px; font-weight:700; font-size:0.95rem;
-    margin-top:10px;
-  }
-  .risk-badge.low{ background:var(--success-bg); color:var(--success); }
-  .risk-badge.high{ background:var(--danger-bg); color:var(--danger); }
-  .risk-badge .dot{ width:8px; height:8px; border-radius:50%; background:currentColor; }
-
-  .recommendation-box{
-    margin-top:18px; padding:14px 16px; border-radius:var(--radius-sm);
-    background:var(--surface-2); border:1px solid var(--border);
-    font-size:0.88rem; color:var(--text); text-align:left;
-    display:flex; gap:10px; align-items:flex-start;
-  }
-  .recommendation-box svg{ width:18px; height:18px; flex-shrink:0; margin-top:1px; color:var(--blue); }
-
-  .applicant-tag{
-    font-size:0.78rem; color:var(--muted); margin-top:14px;
-    font-family:var(--font-mono);
-  }
-
-  /* ============================================================
-     HISTORY
-     ============================================================ */
-  .history-list{ display:flex; flex-direction:column; gap:10px; max-height:340px; overflow:auto; padding-right:4px;}
-  .history-list::-webkit-scrollbar{ width:6px; }
-  .history-list::-webkit-scrollbar-thumb{ background:var(--border); border-radius:6px; }
-  .history-item{
-    display:flex; align-items:center; justify-content:space-between; gap:10px;
-    padding:11px 13px; border-radius:var(--radius-sm); border:1px solid var(--border);
-    background:var(--surface-2);
-    font-size:0.82rem;
-  }
-  .history-item .hi-left{ display:flex; flex-direction:column; gap:2px; min-width:0;}
-  .history-item .hi-name{ font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:140px;}
-  .history-item .hi-time{ color:var(--muted); font-size:0.72rem; }
-  .history-badge{
-    font-family:var(--font-mono); font-weight:700; font-size:0.76rem;
-    padding:4px 9px; border-radius:999px; flex-shrink:0;
-  }
-  .history-badge.low{ background:var(--success-bg); color:var(--success); }
-  .history-badge.high{ background:var(--danger-bg); color:var(--danger); }
-  .history-empty{ font-size:0.85rem; color:var(--muted); text-align:center; padding:20px 0; }
-
-  /* ============================================================
-     METRICS
-     ============================================================ */
-  .metric-row{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
-  .metric-row .m-label{ width:96px; font-size:0.8rem; font-weight:600; color:var(--text); flex-shrink:0; }
-  .metric-row .m-bar-track{ flex:1; height:9px; border-radius:999px; background:var(--surface-2); overflow:hidden; }
-  .metric-row .m-bar-fill{ height:100%; border-radius:999px; background:linear-gradient(90deg, var(--blue), #6EA0FF); width:0%; transition:width 900ms ease; }
-  .metric-row .m-val{ width:52px; text-align:right; font-family:var(--font-mono); font-size:0.82rem; color:var(--muted); flex-shrink:0; }
-
-  .best-model-chip{
-    display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
-    background:var(--blue-light); color:var(--blue-dark); font-size:0.78rem; font-weight:700;
-    padding:6px 12px; border-radius:999px;
-  }
-
-  .cm-grid{
-    display:grid; grid-template-columns:auto repeat(2, 1fr); gap:4px; margin-top:16px; font-size:0.76rem;
-  }
-  .cm-grid .cm-head{ font-weight:700; color:var(--muted); text-align:center; padding:6px 4px; }
-  .cm-grid .cm-side{ font-weight:700; color:var(--muted); display:flex; align-items:center; padding:0 6px; }
-  .cm-grid .cm-cell{
-    padding:14px 6px; text-align:center; border-radius:8px; font-family:var(--font-mono); font-weight:700;
-    background:var(--surface-2); border:1px solid var(--border);
-  }
-  .cm-grid .cm-cell.correct{ background:var(--success-bg); color:var(--success); }
-  .cm-grid .cm-cell.wrong{ background:var(--danger-bg); color:var(--danger); }
-
-  /* ============================================================
-     FOOTER
-     ============================================================ */
-  .site-footer{
-    background:var(--navy); color:#C6D3EE; padding:34px 28px;
-    margin-top:12px;
-  }
-  .footer-inner{
-    max-width:1240px; margin:0 auto; display:flex; justify-content:space-between;
-    flex-wrap:wrap; gap:16px; align-items:center;
-  }
-  .footer-inner p{ font-size:0.82rem; }
-  .footer-inner .footer-links{ display:flex; gap:18px; }
-  .footer-inner .footer-links a{ color:#C6D3EE; text-decoration:none; font-size:0.82rem; }
-  .footer-inner .footer-links a:hover{ text-decoration:underline; }
-  .footer-disclaimer{ max-width:1240px; margin:14px auto 0; font-size:0.72rem; color:#8298C4; }
-
-  /* ============================================================
-     TOAST
-     ============================================================ */
-  .toast{
-    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
-    background:var(--navy); color:#fff; padding:12px 20px; border-radius:999px;
-    font-size:0.85rem; box-shadow:var(--shadow-lg);
-    opacity:0; pointer-events:none; transition:opacity var(--transition), transform var(--transition);
-    z-index:200; display:flex; align-items:center; gap:8px;
-  }
-  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
-  .toast.error{ background:var(--danger); }
-
-  /* ============================================================
-     RESPONSIVE
-     ============================================================ */
-  @media (max-width:980px){
-    .hero{ grid-template-columns:1fr; }
-    .layout{ grid-template-columns:1fr; }
-    .field-grid{ grid-template-columns:1fr; }
-  }
-  @media (max-width:560px){
-    .hero h2{ font-size:1.9rem; }
-    .header-inner{ padding:14px 18px; }
-    .hero, .layout{ padding-left:18px; padding-right:18px; }
-    .panel{ padding:20px; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
-  }
-</style>
-</head>
-<body data-theme="light">
-<a href="#main" class="skip-link">Skip to content</a>
-
-<header class="site-header">
-  <div class="header-inner">
-    <div class="brand">
-      <div class="brand-mark">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L3 6V11C3 16.5 6.8 21.3 12 22.5C17.2 21.3 21 16.5 21 11V6L12 2Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M8.5 12.2L10.8 14.5L15.7 9.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="brand-text">
-        <h1>CreditSense AI</h1>
-        <span>Credit Risk Intelligence</span>
-      </div>
-    </div>
-    <div class="header-actions">
-      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
-        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 3V4.5M12 19.5V21M4.5 12H3M21 12H19.5M6 6L5 5M19 19L18 18M6 18L5 19M19 5L18 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
-        </svg>
-        <span id="themeLabel">Dark mode</span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<main id="main">
-  <section class="hero">
-    <div>
-      <span class="hero-eyebrow"><span class="dot"></span> Machine Learning &middot; Random Forest Engine</span>
-      <h2>Know a borrower's risk <em>before</em> you approve the loan.</h2>
-      <p class="lead">CreditSense AI scores loan applicants in real time using a trained ensemble model, turning eleven applicant signals into a clear Low Risk / High Risk verdict with a confidence score.</p>
-      <div class="hero-stats">
-        <div class="hero-stat"><b id="statAccuracy">--%</b><span>Model accuracy</span></div>
-        <div class="hero-stat"><b>&lt;1s</b><span>Prediction time</span></div>
-        <div class="hero-stat"><b>11</b><span>Risk signals used</span></div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="mini-gauge-label">Live model accuracy on held-out test data</div>
-      <div class="gauge-wrap" id="heroGaugeWrap">
-        <svg viewBox="0 0 220 130">
-          <path class="gauge-track" d="M 20 110 A 90 90 0 0 1 200 110" />
-          <path class="gauge-fill" id="heroGaugeFill" d="M 20 110 A 90 90 0 0 1 200 110" stroke="#2563EB"/>
-        </svg>
-        <div class="gauge-needle-value">
-          <span class="num" id="heroGaugeNum">--</span>
-          <span class="lbl">Best model</span>
-        </div>
-      </div>
-      <div class="best-model-chip" id="bestModelChip">Loading model info&hellip;</div>
-    </div>
-  </section>
-
-  <div class="layout">
+<div class="container">
+  <div class="two-col">
     <!-- ================= FORM PANEL ================= -->
     <section class="panel" aria-labelledby="formTitle">
       <div class="panel-header">
@@ -495,6 +17,7 @@
           <h3 id="formTitle">Applicant Details</h3>
           <p>Fill in the borrower's information to assess credit risk.</p>
         </div>
+        <button type="button" class="btn btn-ghost btn-sm" id="sampleApplicantBtn">&#8635; Load Sample Applicant</button>
       </div>
 
       <form id="riskForm" novalidate>
@@ -528,6 +51,19 @@
             </select>
             <span class="error-msg">Please select a gender.</span>
           </div>
+
+          <div class="field" id="field-residential_status">
+            <label for="residential_status">Residential Status
+              <span class="tooltip-icon" tabindex="0">?<span class="tooltip-bubble">Whether the applicant owns, rents, or has a mortgage on their residence.</span></span>
+            </label>
+            <select id="residential_status" name="residential_status" required>
+              <option value="" disabled selected>Select</option>
+              <option value="Owned">Owned</option>
+              <option value="Rented">Rented</option>
+              <option value="Mortgaged">Mortgaged</option>
+            </select>
+            <span class="error-msg">Please select residential status.</span>
+          </div>
         </div>
 
         <p class="form-section-title">Employment &amp; Income</p>
@@ -552,6 +88,14 @@
             </label>
             <input type="number" id="annual_income" name="annual_income" placeholder="e.g. 550000" min="1" required>
             <span class="error-msg">Enter a valid annual income.</span>
+          </div>
+
+          <div class="field" id="field-co_applicant_income">
+            <label for="co_applicant_income">Co-Applicant Income (&#8377;)
+              <span class="tooltip-icon" tabindex="0">?<span class="tooltip-bubble">Annual income of a co-applicant/joint borrower, if any. Enter 0 if none.</span></span>
+            </label>
+            <input type="number" id="co_applicant_income" name="co_applicant_income" placeholder="e.g. 0" min="0" required>
+            <span class="error-msg">Enter a valid co-applicant income (0 if none).</span>
           </div>
         </div>
 
@@ -602,7 +146,7 @@
         <div class="field-grid">
           <div class="field" id="field-credit_history">
             <label for="credit_history">Credit History
-              <span class="tooltip-icon" tabindex="0">?<span class="tooltip-bubble">Applicant's historical repayment reliability.</span></span>
+              <span class="tooltip-icon" tabindex="0">?<span class="tooltip-bubble">Applicant's self-reported historical repayment reliability.</span></span>
             </label>
             <select id="credit_history" name="credit_history" required>
               <option value="" disabled selected>Select</option>
@@ -619,6 +163,49 @@
             </label>
             <input type="number" id="debt_to_income_ratio" name="debt_to_income_ratio" placeholder="e.g. 28" min="0" max="100" step="0.1" required>
             <span class="error-msg">Enter a value between 0 and 100.</span>
+          </div>
+
+          <div class="field full" id="field-cibil_score">
+            <label for="cibil_score">CIBIL Score
+              <span class="tooltip-icon" tabindex="0">?<span class="tooltip-bubble">Credit Information Bureau (India) Limited score, ranging 300-900. Pulled from the credit bureau in a real application; the primary real-world driver of lending decisions.</span></span>
+            </label>
+            <input type="number" id="cibil_score" name="cibil_score" placeholder="e.g. 750" min="300" max="900" required>
+            <span class="error-msg">Enter a CIBIL score between 300 and 900.</span>
+          </div>
+        </div>
+
+        <p class="form-section-title">Banking &amp; KYC Details</p>
+        <div class="field-grid">
+          <div class="field" id="field-pan_verified">
+            <label for="pan_verified">PAN / KYC Verified
+              <span class="tooltip-icon" tabindex="0">?<span class="tooltip-bubble">Whether the applicant's PAN card and KYC documents have been verified by the bank.</span></span>
+            </label>
+            <select id="pan_verified" name="pan_verified" required>
+              <option value="" disabled selected>Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+            <span class="error-msg">Please select PAN/KYC verification status.</span>
+          </div>
+
+          <div class="field" id="field-collateral_provided">
+            <label for="collateral_provided">Collateral Provided
+              <span class="tooltip-icon" tabindex="0">?<span class="tooltip-bubble">Whether the applicant has offered collateral/security against the loan (secured vs. unsecured).</span></span>
+            </label>
+            <select id="collateral_provided" name="collateral_provided" required>
+              <option value="" disabled selected>Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+            <span class="error-msg">Please select collateral status.</span>
+          </div>
+
+          <div class="field full" id="field-bank_relationship_years">
+            <label for="bank_relationship_years">Existing Bank Relationship (Years)
+              <span class="tooltip-icon" tabindex="0">?<span class="tooltip-bubble">How many years the applicant has held an account/relationship with the lending bank. Enter 0 if a new customer.</span></span>
+            </label>
+            <input type="number" id="bank_relationship_years" name="bank_relationship_years" placeholder="e.g. 4" min="0" max="60" step="0.5" required>
+            <span class="error-msg">Enter a value between 0 and 60.</span>
           </div>
         </div>
 
@@ -662,11 +249,63 @@
             <span class="dot"></span>
             <span id="riskBadgeText">Low Risk</span>
           </div>
+
+          <div class="cibil-strip" id="cibilStrip">
+            <div class="cibil-strip-head">
+              <span>CIBIL Score</span>
+              <span id="cibilValueText">--</span>
+            </div>
+            <div class="cibil-track">
+              <div class="cibil-marker" id="cibilMarker"></div>
+            </div>
+            <div class="cibil-bands">
+              <span>300</span><span>Poor</span><span>Fair</span><span>Good</span><span>Excellent</span><span>900</span>
+            </div>
+          </div>
+
           <div class="recommendation-box">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V13M12 17H12.01M10.3 3.9L2.5 17.5C2.1 18.2 2.6 19 3.4 19H20.6C21.4 19 21.9 18.2 21.5 17.5L13.7 3.9C13.3 3.2 12.3 3.2 11.9 3.9H10.3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
             <span id="recommendationText">Eligible for Loan Approval</span>
           </div>
+
+          <div class="loan-offer-card" id="loanOfferCard">
+            <p class="loan-offer-title">Estimated Loan Offer</p>
+            <div id="loanOfferContent"></div>
+          </div>
+
+          <div class="explanation-panel" id="explanationPanel">
+            <p class="explanation-title">Top Factors Behind This Prediction</p>
+            <div id="explanationList"></div>
+          </div>
+
           <p class="applicant-tag" id="applicantTag"></p>
+
+          <div class="result-meta-actions">
+            <button type="button" class="btn btn-ghost btn-sm" id="downloadPdfBtn">&#8681; Download PDF Report</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="whatIfToggleBtn">&#9881; What-If Analysis</button>
+          </div>
+
+          <div class="whatif-panel" id="whatIfPanel" style="display:none;">
+            <p class="whatif-title">Adjust values and watch the verdict update live</p>
+
+            <div class="whatif-row">
+              <label for="whatIfCibil">CIBIL Score: <span id="whatIfCibilVal">--</span></label>
+              <input type="range" id="whatIfCibil" min="300" max="900" step="5">
+            </div>
+            <div class="whatif-row">
+              <label for="whatIfIncome">Annual Income: <span id="whatIfIncomeVal">--</span></label>
+              <input type="range" id="whatIfIncome" min="9000" max="250000" step="1000">
+            </div>
+            <div class="whatif-row">
+              <label for="whatIfLoanAmount">Loan Amount: <span id="whatIfLoanAmountVal">--</span></label>
+              <input type="range" id="whatIfLoanAmount" min="1000" max="150000" step="1000">
+            </div>
+            <div class="whatif-row">
+              <label for="whatIfDti">Debt-to-Income Ratio: <span id="whatIfDtiVal">--</span>%</label>
+              <input type="range" id="whatIfDti" min="1" max="95" step="1">
+            </div>
+            <p class="whatif-hint" id="whatIfHint">Move a slider to see how the verdict changes.</p>
+          </div>
         </div>
       </section>
 
@@ -676,95 +315,123 @@
             <h3 id="historyTitle">Prediction History</h3>
             <p>Stored locally in your browser.</p>
           </div>
-          <button type="button" class="btn btn-ghost" id="clearHistoryBtn" style="padding:8px 14px; font-size:0.78rem;">Clear</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="clearHistoryBtn">Clear</button>
         </div>
         <div id="historyList" class="history-list">
-          <p class="history-empty">No predictions yet. Your assessed applicants will appear here.</p>
-        </div>
-      </section>
-
-      <section class="panel" aria-labelledby="metricsTitle">
-        <div class="panel-header">
-          <div>
-            <h3 id="metricsTitle">Model Performance</h3>
-            <p>Evaluated on a held-out test set.</p>
-          </div>
-        </div>
-        <div id="metricsContent">
-          <p class="history-empty">Loading evaluation metrics&hellip;</p>
+          <p class="empty-msg">No predictions yet. Your assessed applicants will appear here.</p>
         </div>
       </section>
     </div>
   </div>
-</main>
+</div>
+{% endblock %}
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p>&copy; <span id="year"></span> CreditSense AI. Built for educational demonstration purposes.</p>
-    <div class="footer-links">
-      <a href="#main">Assessment</a>
-      <a href="#" id="footerHistoryLink">History</a>
-      <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </div>
-  <p class="footer-disclaimer">Disclaimer: CreditSense AI is a student / academic project. Predictions are generated by a machine learning model trained on synthetic data and must not be used for real lending decisions.</p>
-</footer>
+{% block extra_head %}
+<style>
+  .result-card{ text-align:center; }
+  .result-empty{ display:flex; flex-direction:column; align-items:center; gap:10px; padding:34px 10px; color:var(--muted); }
+  .result-empty svg{ width:52px; height:52px; opacity:0.5; }
+  .result-empty p{ font-size:0.88rem; max-width:26ch; }
 
-<div class="toast" id="toast" role="status"></div>
+  .gauge-wrap{ position:relative; width:220px; height:130px; margin:6px auto 4px; }
+  .gauge-wrap svg{ width:100%; height:100%; overflow:visible; }
+  .gauge-track{ fill:none; stroke:var(--surface-2); stroke-width:16; stroke-linecap:round; }
+  .gauge-fill{
+    fill:none; stroke-width:16; stroke-linecap:round; stroke-dasharray:251.2; stroke-dashoffset:251.2;
+    transition:stroke-dashoffset 900ms cubic-bezier(.4,0,.2,1), stroke 400ms ease;
+  }
+  .gauge-needle-value{ position:absolute; bottom:6px; left:0; right:0; text-align:center; }
+  .gauge-needle-value .num{ font-family:var(--font-mono); font-size:2.1rem; font-weight:700; color:var(--navy); }
+  [data-theme="dark"] .gauge-needle-value .num{ color:#fff; }
+  .gauge-needle-value .lbl{ font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; }
 
+  .risk-badge{ display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:999px; font-weight:700; font-size:0.95rem; margin-top:10px; }
+  .risk-badge.low{ background:var(--success-bg); color:var(--success); }
+  .risk-badge.high{ background:var(--danger-bg); color:var(--danger); }
+  .risk-badge .dot{ width:8px; height:8px; border-radius:50%; background:currentColor; }
+
+  /* CIBIL score strip (signature banking element) */
+  .cibil-strip{ margin-top:18px; text-align:left; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px 16px; }
+  .cibil-strip-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
+  .cibil-strip-head span:first-child{ font-size:0.74rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); }
+  .cibil-strip-head span:last-child{ font-family:var(--font-mono); font-size:1.15rem; font-weight:700; color:var(--navy); }
+  [data-theme="dark"] .cibil-strip-head span:last-child{ color:#fff; }
+  .cibil-track{
+    position:relative; height:10px; border-radius:999px; margin-bottom:6px;
+    background:linear-gradient(90deg, #B91C1C 0%, #B91C1C 25%, #B45309 25%, #B45309 50%, #2563EB 50%, #2563EB 75%, #15803D 75%, #15803D 100%);
+  }
+  .cibil-marker{
+    position:absolute; top:-4px; width:4px; height:18px; background:var(--navy); border-radius:2px;
+    transform:translateX(-50%); transition:left 900ms cubic-bezier(.4,0,.2,1);
+  }
+  [data-theme="dark"] .cibil-marker{ background:#fff; }
+  .cibil-bands{ display:flex; justify-content:space-between; font-size:0.64rem; color:var(--muted); }
+
+  .recommendation-box{
+    margin-top:18px; padding:14px 16px; border-radius:var(--radius-sm); background:var(--surface-2); border:1px solid var(--border);
+    font-size:0.88rem; color:var(--text); text-align:left; display:flex; gap:10px; align-items:flex-start;
+  }
+  .recommendation-box svg{ width:18px; height:18px; flex-shrink:0; margin-top:1px; color:var(--blue); }
+
+  /* Loan offer / EMI card (real-world banking output) */
+  .loan-offer-card{
+    margin-top:16px; padding:16px 18px; border-radius:var(--radius-md); text-align:left;
+    background:linear-gradient(135deg, var(--blue-light) 0%, var(--surface-2) 100%); border:1px solid var(--border);
+  }
+  .loan-offer-title{ font-size:0.74rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--blue-dark); margin-bottom:12px; }
+  .loan-offer-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .loan-offer-item{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px 12px; }
+  .loan-offer-item .lo-label{ font-size:0.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; }
+  .loan-offer-item .lo-value{ font-family:var(--font-mono); font-size:1.05rem; font-weight:700; color:var(--navy); margin-top:2px; }
+  [data-theme="dark"] .loan-offer-item .lo-value{ color:#fff; }
+  .loan-offer-declined{ font-size:0.85rem; color:var(--danger); background:var(--danger-bg); padding:12px 14px; border-radius:var(--radius-sm); }
+
+  .explanation-panel{ margin-top:16px; text-align:left; }
+  .explanation-title{ font-size:0.74rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); margin-bottom:10px; }
+  .explanation-row{ display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .explanation-row .e-feature{ width:150px; font-size:0.8rem; font-weight:600; color:var(--text); flex-shrink:0; }
+  .explanation-row .e-track{ flex:1; height:8px; border-radius:999px; background:var(--surface-2); position:relative; overflow:hidden; }
+  .explanation-row .e-fill{ position:absolute; top:0; bottom:0; border-radius:999px; }
+  .explanation-row .e-fill.supports{ background:var(--success); left:50%; }
+  .explanation-row .e-fill.opposes{ background:var(--danger); right:50%; }
+  .explanation-row .e-val{ width:44px; text-align:right; font-family:var(--font-mono); font-size:0.74rem; color:var(--muted); flex-shrink:0; }
+
+  .applicant-tag{ font-size:0.78rem; color:var(--muted); margin-top:14px; font-family:var(--font-mono); }
+
+  .result-meta-actions{ display:flex; gap:10px; justify-content:center; margin-top:18px; flex-wrap:wrap; }
+  .whatif-panel{ margin-top:16px; padding:16px; border-radius:var(--radius-sm); text-align:left; background:var(--surface-2); border:1px solid var(--border); }
+  .whatif-title{ font-size:0.8rem; font-weight:600; color:var(--text); margin-bottom:12px; }
+  .whatif-row{ margin-bottom:14px; }
+  .whatif-row label{ display:flex; justify-content:space-between; font-size:0.78rem; font-weight:600; color:var(--text); margin-bottom:6px; }
+  .whatif-row label span{ font-family:var(--font-mono); color:var(--blue); }
+  .whatif-row input[type="range"]{ width:100%; accent-color:var(--blue); }
+  .whatif-hint{ font-size:0.74rem; color:var(--muted); margin-top:6px; }
+
+  .history-list{ display:flex; flex-direction:column; gap:10px; max-height:340px; overflow:auto; padding-right:4px;}
+  .history-list::-webkit-scrollbar{ width:6px; }
+  .history-list::-webkit-scrollbar-thumb{ background:var(--border); border-radius:6px; }
+  .history-item{
+    display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px 13px;
+    border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface-2); font-size:0.82rem;
+  }
+  .history-item .hi-left{ display:flex; flex-direction:column; gap:2px; min-width:0;}
+  .history-item .hi-name{ font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px;}
+  .history-item .hi-time{ color:var(--muted); font-size:0.72rem; }
+  .history-item .hi-cibil{ color:var(--muted); font-size:0.7rem; font-family:var(--font-mono); }
+  .history-badge{ font-family:var(--font-mono); font-weight:700; font-size:0.76rem; padding:4px 9px; border-radius:999px; flex-shrink:0; }
+  .history-badge.low{ background:var(--success-bg); color:var(--success); }
+  .history-badge.high{ background:var(--danger-bg); color:var(--danger); }
+</style>
+{% endblock %}
+
+{% block extra_scripts %}
 <script>
 (function(){
   "use strict";
+  const showToast = window.CS.showToast;
+  const cibilBand = window.CS.cibilBand;
 
-  /* ============================================================
-     THEME (Dark mode toggle)
-     ============================================================ */
-  const body = document.body;
-  const themeToggle = document.getElementById('themeToggle');
-  const themeLabel = document.getElementById('themeLabel');
-
-  function applyTheme(theme){
-    body.setAttribute('data-theme', theme);
-    themeToggle.setAttribute('aria-pressed', theme === 'dark');
-    themeLabel.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
-    try{ localStorage.setItem('creditsense_theme', theme); }catch(e){}
-  }
-
-  (function initTheme(){
-    let saved = null;
-    try{ saved = localStorage.getItem('creditsense_theme'); }catch(e){}
-    if(!saved){
-      saved = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    applyTheme(saved);
-  })();
-
-  themeToggle.addEventListener('click', function(){
-    const current = body.getAttribute('data-theme');
-    applyTheme(current === 'dark' ? 'light' : 'dark');
-  });
-
-  /* ============================================================
-     TOAST
-     ============================================================ */
-  const toastEl = document.getElementById('toast');
-  let toastTimer = null;
-  function showToast(message, isError){
-    toastEl.textContent = message;
-    toastEl.classList.toggle('error', !!isError);
-    toastEl.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 3200);
-  }
-
-  /* ============================================================
-     FOOTER YEAR
-     ============================================================ */
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  /* ============================================================
-     FORM VALIDATION
-     ============================================================ */
+  /* ---------------- FORM VALIDATION ---------------- */
   const form = document.getElementById('riskForm');
   const submitBtn = document.getElementById('submitBtn');
   const resetBtn = document.getElementById('resetBtn');
@@ -775,12 +442,18 @@
     gender: function(v){ return v !== ''; },
     employment_status: function(v){ return v !== ''; },
     annual_income: function(v){ const n = Number(v); return v !== '' && n > 0; },
+    co_applicant_income: function(v){ const n = Number(v); return v !== '' && n >= 0; },
     loan_amount: function(v){ const n = Number(v); return v !== '' && n > 0; },
     loan_duration: function(v){ const n = Number(v); return v !== '' && n > 0 && n <= 480; },
     loan_purpose: function(v){ return v !== ''; },
     existing_loans: function(v){ const n = Number(v); return v !== '' && n >= 0 && n <= 20; },
     credit_history: function(v){ return v !== ''; },
-    debt_to_income_ratio: function(v){ const n = Number(v); return v !== '' && n >= 0 && n <= 100; }
+    debt_to_income_ratio: function(v){ const n = Number(v); return v !== '' && n >= 0 && n <= 100; },
+    cibil_score: function(v){ const n = Number(v); return v !== '' && n >= 300 && n <= 900; },
+    pan_verified: function(v){ return v !== ''; },
+    collateral_provided: function(v){ return v !== ''; },
+    bank_relationship_years: function(v){ const n = Number(v); return v !== '' && n >= 0 && n <= 60; },
+    residential_status: function(v){ return v !== ''; }
   };
 
   function validateField(name){
@@ -793,9 +466,7 @@
 
   function validateAll(){
     let allOk = true;
-    Object.keys(validators).forEach(function(name){
-      if(!validateField(name)) allOk = false;
-    });
+    Object.keys(validators).forEach(function(name){ if(!validateField(name)) allOk = false; });
     return allOk;
   }
 
@@ -809,25 +480,17 @@
     });
   });
 
-  /* ============================================================
-     GAUGE HELPERS  (circumference for r=90 half-circle path = 282.7,
-     but our path 'M 20 110 A 90 90 0 0 1 200 110' has length ~ 282.6.
-     We measure at runtime for accuracy.)
-     ============================================================ */
+  /* ---------------- GAUGE HELPERS ---------------- */
   function setGauge(fillEl, numEl, percent, colorVar){
     const len = fillEl.getTotalLength ? fillEl.getTotalLength() : 282.6;
     fillEl.style.strokeDasharray = len;
     const offset = len * (1 - Math.min(Math.max(percent,0),100) / 100);
     fillEl.style.stroke = colorVar;
-    requestAnimationFrame(function(){
-      fillEl.style.strokeDashoffset = offset;
-    });
+    requestAnimationFrame(function(){ fillEl.style.strokeDashoffset = offset; });
     if(numEl) numEl.textContent = Math.round(percent) + '%';
   }
 
-  /* ============================================================
-     RESULT RENDERING
-     ============================================================ */
+  /* ---------------- RESULT RENDERING ---------------- */
   const resultEmpty = document.getElementById('resultEmpty');
   const resultContent = document.getElementById('resultContent');
   const riskBadge = document.getElementById('riskBadge');
@@ -836,11 +499,12 @@
   const applicantTag = document.getElementById('applicantTag');
   const resultGaugeFill = document.getElementById('resultGaugeFill');
   const resultGaugeNum = document.getElementById('resultGaugeNum');
+  const cibilValueText = document.getElementById('cibilValueText');
+  const cibilMarker = document.getElementById('cibilMarker');
 
-  const colors = {
-    low: getComputedStyle(document.documentElement).getPropertyValue('--success').trim() || '#15803D',
-    high: getComputedStyle(document.documentElement).getPropertyValue('--danger').trim() || '#B91C1C'
-  };
+  const colors = { low: '#15803D', high: '#B91C1C' };
+  let lastResult = null;
+  let lastPayload = null;
 
   function renderResult(data){
     resultEmpty.style.display = 'none';
@@ -853,73 +517,125 @@
     recommendationText.textContent = data.message;
     applicantTag.textContent = 'Applicant: ' + data.applicant_name + '  ·  ' + new Date().toLocaleString();
 
-    const cssColor = getComputedStyle(document.documentElement).getPropertyValue(isLow ? '--success' : '--danger').trim();
-    setGauge(resultGaugeFill, resultGaugeNum, data.probability, cssColor || (isLow ? colors.low : colors.high));
+    const cssColor = isLow ? colors.low : colors.high;
+    setGauge(resultGaugeFill, resultGaugeNum, data.probability, cssColor);
+
+    renderCibilStrip(data.cibil_score);
+    renderLoanOffer(data.loan_offer);
+    renderExplanation(data.explanation || []);
+    lastResult = data;
   }
 
-  /* ============================================================
-     LOCAL STORAGE HISTORY
-     ============================================================ */
-  const HISTORY_KEY = 'creditsense_history';
-  const historyList = document.getElementById('historyList');
-
-  function getHistory(){
-    try{
-      const raw = localStorage.getItem(HISTORY_KEY);
-      return raw ? JSON.parse(raw) : [];
-    }catch(e){ return []; }
-  }
-
-  function saveHistory(list){
-    try{ localStorage.setItem(HISTORY_KEY, JSON.stringify(list.slice(0, 25))); }catch(e){}
-  }
-
-  function addHistoryEntry(entry){
-    const list = getHistory();
-    list.unshift(entry);
-    saveHistory(list);
-    renderHistory();
-  }
-
-  function renderHistory(){
-    const list = getHistory();
-    if(list.length === 0){
-      historyList.innerHTML = '<p class="history-empty">No predictions yet. Your assessed applicants will appear here.</p>';
+  function renderLoanOffer(offer){
+    const wrap = document.getElementById('loanOfferContent');
+    if(!offer){
+      wrap.innerHTML = '<p style="font-size:0.8rem; color:var(--muted);">No loan offer available.</p>';
       return;
     }
-    historyList.innerHTML = list.map(function(item){
-      const isLow = item.risk === 'Low Risk';
-      const safeName = (item.applicant_name || 'Applicant').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      return '' +
-        '<div class="history-item">' +
-          '<div class="hi-left">' +
-            '<span class="hi-name">' + safeName + '</span>' +
-            '<span class="hi-time">' + item.time + '</span>' +
-          '</div>' +
-          '<span class="history-badge ' + (isLow ? 'low' : 'high') + '">' + Math.round(item.probability) + '% &middot; ' + item.risk + '</span>' +
+    if(!offer.eligible){
+      wrap.innerHTML = '<div class="loan-offer-declined">' + offer.reason + '</div>';
+      return;
+    }
+    wrap.innerHTML = '<div class="loan-offer-grid">' +
+      '<div class="loan-offer-item"><div class="lo-label">Interest Rate</div><div class="lo-value">' + offer.interest_rate_pct + '% p.a.</div></div>' +
+      '<div class="loan-offer-item"><div class="lo-label">Monthly EMI</div><div class="lo-value">\u20b9' + Number(offer.monthly_emi).toLocaleString() + '</div></div>' +
+      '<div class="loan-offer-item"><div class="lo-label">Total Interest</div><div class="lo-value">\u20b9' + Number(offer.total_interest).toLocaleString() + '</div></div>' +
+      '<div class="loan-offer-item"><div class="lo-label">Total Payable</div><div class="lo-value">\u20b9' + Number(offer.total_payable).toLocaleString() + '</div></div>' +
+      '</div>';
+  }
+
+  function renderCibilStrip(score){
+    const band = cibilBand(score);
+    cibilValueText.textContent = score + ' (' + band.label + ')';
+    cibilValueText.style.color = band.color;
+    const pct = Math.min(Math.max((score - 300) / (900 - 300) * 100, 0), 100);
+    requestAnimationFrame(function(){ cibilMarker.style.left = pct + '%'; });
+  }
+
+  function renderExplanation(items){
+    const list = document.getElementById('explanationList');
+    if(!items.length){
+      list.innerHTML = '<p style="font-size:0.8rem; color:var(--muted);">No explanation available for this prediction.</p>';
+      return;
+    }
+    const maxImpact = Math.max.apply(null, items.map(function(i){ return Math.abs(i.impact); })) || 1;
+    list.innerHTML = items.map(function(item){
+      const pct = Math.min(Math.abs(item.impact) / maxImpact * 50, 50);
+      const cls = item.direction === 'supports' ? 'supports' : 'opposes';
+      const sign = item.direction === 'supports' ? '+' : '-';
+      return '<div class="explanation-row">' +
+        '<span class="e-feature">' + item.feature + '</span>' +
+        '<div class="e-track"><div class="e-fill ' + cls + '" style="width:' + pct + '%"></div></div>' +
+        '<span class="e-val">' + sign + Math.abs(item.impact) + '</span>' +
         '</div>';
     }).join('');
   }
 
+  /* ---------------- LOCAL STORAGE HISTORY ---------------- */
+  const HISTORY_KEY = 'creditsense_history';
+  const historyList = document.getElementById('historyList');
+
+  function getHistory(){ try{ const raw = localStorage.getItem(HISTORY_KEY); return raw ? JSON.parse(raw) : []; }catch(e){ return []; } }
+  function saveHistory(list){ try{ localStorage.setItem(HISTORY_KEY, JSON.stringify(list.slice(0, 25))); }catch(e){} }
+  function addHistoryEntry(entry){ const list = getHistory(); list.unshift(entry); saveHistory(list); renderHistory(); }
+  function renderHistory(){
+    const list = getHistory();
+    if(list.length === 0){ historyList.innerHTML = '<p class="empty-msg">No predictions yet. Your assessed applicants will appear here.</p>'; return; }
+    historyList.innerHTML = list.map(function(item){
+      const isLow = item.risk === 'Low Risk';
+      const safeName = (item.applicant_name || 'Applicant').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      return '<div class="history-item"><div class="hi-left">' +
+        '<span class="hi-name">' + safeName + '</span>' +
+        '<span class="hi-time">' + item.time + '</span>' +
+        '<span class="hi-cibil">CIBIL ' + (item.cibil_score || '--') + '</span></div>' +
+        '<span class="history-badge ' + (isLow ? 'low' : 'high') + '">' + Math.round(item.probability) + '% &middot; ' + item.risk + '</span></div>';
+    }).join('');
+  }
   document.getElementById('clearHistoryBtn').addEventListener('click', function(){
     try{ localStorage.removeItem(HISTORY_KEY); }catch(e){}
     renderHistory();
     showToast('History cleared.');
   });
-
-  document.getElementById('footerHistoryLink').addEventListener('click', function(e){
-    e.preventDefault();
-    document.getElementById('historyTitle').closest('section').scrollIntoView({behavior:'smooth', block:'start'});
-  });
-
   renderHistory();
 
-  /* ============================================================
-     FORM SUBMIT
-     ============================================================ */
+  /* ---------------- LOAD SAMPLE APPLICANT (from actual training data) ---------------- */
+  document.getElementById('sampleApplicantBtn').addEventListener('click', function(){
+    const btn = this;
+    btn.disabled = true;
+    const originalLabel = btn.textContent;
+    btn.textContent = 'Loading…';
+
+    fetch('/sample-applicant')
+      .then(function(res){ return res.json().then(function(body){ return { ok: res.ok, body: body }; }); })
+      .then(function(result){
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+        if(!result.ok){ showToast(result.body.error || 'Could not load a sample applicant.', true); return; }
+
+        const sample = result.body;
+        Object.keys(sample).forEach(function(key){
+          if(key === 'actual_risk_in_dataset') return;
+          const el = form.elements[key];
+          if(el) el.value = sample[key];
+        });
+
+        Object.keys(validators).forEach(function(name){
+          const wrap = document.getElementById('field-' + name);
+          if(wrap) wrap.classList.remove('has-error');
+        });
+
+        showToast('Loaded a real applicant from the training dataset (actual label: ' + sample.actual_risk_in_dataset + '). Click Assess to see the model\u2019s prediction.');
+      })
+      .catch(function(){
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+        showToast('Unable to reach the server.', true);
+      });
+  });
+
+  /* ---------------- FORM SUBMIT ---------------- */
   form.addEventListener('submit', function(e){
     e.preventDefault();
-
     if(!validateAll()){
       showToast('Please fix the highlighted fields.', true);
       const firstError = form.querySelector('.has-error input, .has-error select');
@@ -933,39 +649,38 @@
       gender: form.elements['gender'].value,
       employment_status: form.elements['employment_status'].value,
       annual_income: Number(form.elements['annual_income'].value),
+      co_applicant_income: Number(form.elements['co_applicant_income'].value),
       loan_amount: Number(form.elements['loan_amount'].value),
       loan_duration: Number(form.elements['loan_duration'].value),
       credit_history: form.elements['credit_history'].value,
       existing_loans: Number(form.elements['existing_loans'].value),
       debt_to_income_ratio: Number(form.elements['debt_to_income_ratio'].value),
-      loan_purpose: form.elements['loan_purpose'].value
+      loan_purpose: form.elements['loan_purpose'].value,
+      cibil_score: Number(form.elements['cibil_score'].value),
+      pan_verified: form.elements['pan_verified'].value,
+      collateral_provided: form.elements['collateral_provided'].value,
+      bank_relationship_years: Number(form.elements['bank_relationship_years'].value),
+      residential_status: form.elements['residential_status'].value
     };
 
     submitBtn.classList.add('loading');
     submitBtn.disabled = true;
 
     fetch('/predict', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
     })
-    .then(function(res){
-      return res.json().then(function(body){ return { ok: res.ok, body: body }; });
-    })
+    .then(function(res){ return res.json().then(function(body){ return { ok: res.ok, body: body }; }); })
     .then(function(result){
       submitBtn.classList.remove('loading');
       submitBtn.disabled = false;
-
-      if(!result.ok){
-        showToast(result.body.error || 'Something went wrong. Please try again.', true);
-        return;
-      }
+      if(!result.ok){ showToast(result.body.error || 'Something went wrong. Please try again.', true); return; }
 
       renderResult(result.body);
+      lastPayload = payload;
+      initWhatIfSliders(payload);
       addHistoryEntry({
-        applicant_name: result.body.applicant_name,
-        risk: result.body.risk,
-        probability: result.body.probability,
+        applicant_name: result.body.applicant_name, risk: result.body.risk,
+        probability: result.body.probability, cibil_score: result.body.cibil_score,
         time: new Date().toLocaleString()
       });
       showToast('Assessment complete for ' + result.body.applicant_name + '.');
@@ -985,68 +700,91 @@
     });
     resultContent.style.display = 'none';
     resultEmpty.style.display = 'flex';
+    document.getElementById('whatIfPanel').style.display = 'none';
     showToast('Form reset.');
   });
 
-  /* ============================================================
-     MODEL METRICS
-     ============================================================ */
-  const metricsContent = document.getElementById('metricsContent');
-  const statAccuracy = document.getElementById('statAccuracy');
-  const bestModelChip = document.getElementById('bestModelChip');
-  const heroGaugeFill = document.getElementById('heroGaugeFill');
-  const heroGaugeNum = document.getElementById('heroGaugeNum');
+  /* ---------------- WHAT-IF ANALYSIS ---------------- */
+  const whatIfPanel = document.getElementById('whatIfPanel');
+  const whatIfToggleBtn = document.getElementById('whatIfToggleBtn');
+  const whatIfCibil = document.getElementById('whatIfCibil');
+  const whatIfIncome = document.getElementById('whatIfIncome');
+  const whatIfLoanAmount = document.getElementById('whatIfLoanAmount');
+  const whatIfDti = document.getElementById('whatIfDti');
+  const whatIfHint = document.getElementById('whatIfHint');
+  let whatIfDebounceTimer = null;
 
-  fetch('/metrics')
-    .then(function(res){ return res.json(); })
-    .then(function(data){
-      if(data.error){ throw new Error(data.error); }
-      const best = data.best_model;
-      const bestStats = data.results[best];
+  whatIfToggleBtn.addEventListener('click', function(){
+    if(!lastPayload){ showToast('Run an assessment first.', true); return; }
+    whatIfPanel.style.display = whatIfPanel.style.display === 'none' ? 'block' : 'none';
+  });
 
-      statAccuracy.textContent = bestStats.accuracy + '%';
-      bestModelChip.textContent = 'Best model: ' + best;
-      setGauge(heroGaugeFill, heroGaugeNum, bestStats.accuracy, '#2563EB');
-
-      let html = '<div class="best-model-chip" style="margin-bottom:18px;">Winner: ' + best + '</div>';
-      html += metricBar('Accuracy', bestStats.accuracy);
-      html += metricBar('Precision', bestStats.precision);
-      html += metricBar('Recall', bestStats.recall);
-      html += metricBar('F1 Score', bestStats.f1_score);
-
-      const cm = bestStats.confusion_matrix;
-      if(cm && cm.length === 2){
-        html += '<div class="cm-grid">' +
-          '<div></div><div class="cm-head">Pred: Low</div><div class="cm-head">Pred: High</div>' +
-          '<div class="cm-side">Actual: Low</div><div class="cm-cell correct">' + cm[0][0] + '</div><div class="cm-cell wrong">' + cm[0][1] + '</div>' +
-          '<div class="cm-side">Actual: High</div><div class="cm-cell wrong">' + cm[1][0] + '</div><div class="cm-cell correct">' + cm[1][1] + '</div>' +
-        '</div>';
-      }
-
-      metricsContent.innerHTML = html;
-
-      // animate bars after paint
-      requestAnimationFrame(function(){
-        document.querySelectorAll('.m-bar-fill').forEach(function(bar){
-          bar.style.width = bar.getAttribute('data-target') + '%';
-        });
-      });
-    })
-    .catch(function(){
-      metricsContent.innerHTML = '<p class="history-empty">Model metrics unavailable. Run train_model.py first.</p>';
-      bestModelChip.textContent = 'Model info unavailable';
-    });
-
-  function metricBar(label, value){
-    return '' +
-      '<div class="metric-row">' +
-        '<span class="m-label">' + label + '</span>' +
-        '<div class="m-bar-track"><div class="m-bar-fill" data-target="' + value + '"></div></div>' +
-        '<span class="m-val">' + value + '%</span>' +
-      '</div>';
+  function initWhatIfSliders(payload){
+    whatIfCibil.value = payload.cibil_score;
+    whatIfIncome.value = payload.annual_income;
+    whatIfLoanAmount.value = payload.loan_amount;
+    whatIfDti.value = payload.debt_to_income_ratio;
+    updateWhatIfLabels();
   }
 
+  function updateWhatIfLabels(){
+    document.getElementById('whatIfCibilVal').textContent = whatIfCibil.value;
+    document.getElementById('whatIfIncomeVal').textContent = '\u20b9' + Number(whatIfIncome.value).toLocaleString();
+    document.getElementById('whatIfLoanAmountVal').textContent = '\u20b9' + Number(whatIfLoanAmount.value).toLocaleString();
+    document.getElementById('whatIfDtiVal').textContent = whatIfDti.value;
+  }
+
+  [whatIfCibil, whatIfIncome, whatIfLoanAmount, whatIfDti].forEach(function(slider){
+    slider.addEventListener('input', function(){
+      updateWhatIfLabels();
+      clearTimeout(whatIfDebounceTimer);
+      whatIfHint.textContent = 'Recalculating\u2026';
+      whatIfDebounceTimer = setTimeout(runWhatIfPrediction, 400);
+    });
+  });
+
+  function runWhatIfPrediction(){
+    if(!lastPayload) return;
+    const payload = Object.assign({}, lastPayload, {
+      cibil_score: Number(whatIfCibil.value),
+      annual_income: Number(whatIfIncome.value),
+      loan_amount: Number(whatIfLoanAmount.value),
+      debt_to_income_ratio: Number(whatIfDti.value)
+    });
+
+    fetch('/predict', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+      .then(function(res){ return res.json().then(function(body){ return { ok: res.ok, body: body }; }); })
+      .then(function(result){
+        if(!result.ok){ whatIfHint.textContent = result.body.error || 'Could not recalculate.'; return; }
+        renderResult(result.body);
+        lastPayload = payload;
+        whatIfHint.textContent = 'Updated ' + new Date().toLocaleTimeString() + ' \u2014 move a slider to try another scenario.';
+      })
+      .catch(function(){ whatIfHint.textContent = 'Unable to reach the server.'; });
+  }
+
+  /* ---------------- PDF EXPORT ---------------- */
+  document.getElementById('downloadPdfBtn').addEventListener('click', function(){
+    if(!lastResult || !lastPayload){ showToast('Run an assessment first.', true); return; }
+    fetch('/export-pdf', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ result: lastResult, inputs: lastPayload, explanation: lastResult.explanation || [] })
+    })
+    .then(function(res){
+      if(!res.ok){ return res.json().then(function(b){ throw new Error(b.error || 'Failed to generate PDF.'); }); }
+      return res.blob();
+    })
+    .then(function(blob){
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'CreditSense_Report_' + (lastResult.applicant_name || 'applicant').replace(/\s+/g, '_') + '.pdf';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+      showToast('PDF report downloaded.');
+    })
+    .catch(function(err){ showToast(err.message || 'Could not generate PDF.', true); });
+  });
 })();
 </script>
-</body>
-</html>
+{% endblock %}
